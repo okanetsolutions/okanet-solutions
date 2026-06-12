@@ -23,6 +23,7 @@
                 <a href="#okacrm" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">03</span>OkaCRM</a>
                 <a href="#okaisp" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">04</span>OkaISP</a>
                 <a href="#nosotros" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">05</span>Nosotros</a>
+                <a href="{{ route('blog.index') }}" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">06</span>Blog</a>
                 <a href="#contacto" class="px-5 py-2 bg-espresso hover:bg-terracotta text-bone font-medium transition-colors">Contacto →</a>
             </div>
             <button id="menu-toggle" class="md:hidden text-espresso">
@@ -34,7 +35,8 @@
             <a href="#okacrm" class="block text-umber hover:text-espresso transition-colors"><span class="font-mono text-[10px] text-stone mr-2">03</span>OkaCRM</a>
             <a href="#okaisp" class="block text-umber hover:text-espresso transition-colors"><span class="font-mono text-[10px] text-stone mr-2">04</span>OkaISP</a>
             <a href="#nosotros" class="block text-umber hover:text-espresso transition-colors"><span class="font-mono text-[10px] text-stone mr-2">05</span>Nosotros</a>
-            <a href="#contacto" class="block text-terracotta font-semibold"><span class="font-mono text-[10px] text-stone mr-2">06</span>Contacto →</a>
+            <a href="{{ route('blog.index') }}" class="block text-umber hover:text-espresso transition-colors"><span class="font-mono text-[10px] text-stone mr-2">06</span>Blog</a>
+            <a href="#contacto" class="block text-terracotta font-semibold"><span class="font-mono text-[10px] text-stone mr-2">07</span>Contacto →</a>
         </div>
     </nav>
 
@@ -628,6 +630,7 @@
                     <h4 class="font-mono text-xs text-greige uppercase tracking-widest mb-4">— Empresa</h4>
                     <ul class="space-y-2.5 text-sm text-stone">
                         <li><a href="#nosotros" class="hover:text-terracotta transition-colors">Nosotros</a></li>
+                        <li><a href="{{ route('blog.index') }}" class="hover:text-terracotta transition-colors">Blog</a></li>
                         <li><a href="#contacto" class="hover:text-terracotta transition-colors">Contacto</a></li>
                     </ul>
                 </div>
