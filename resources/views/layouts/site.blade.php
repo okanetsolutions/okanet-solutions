@@ -19,11 +19,11 @@
                 <span class="text-xl font-display font-semibold tracking-tight">Okanet<span class="text-terracotta">.</span></span>
             </a>
             <div class="hidden md:flex items-center gap-8 text-sm">
-                <a href="{{ route('home') }}#productos" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">02</span>Productos</a>
-                <a href="{{ route('home') }}#okacrm" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">03</span>OkaCRM</a>
-                <a href="{{ route('home') }}#okaisp" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">04</span>OkaISP</a>
-                <a href="{{ route('blog.index') }}" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5 {{ request()->routeIs('blog.*') ? 'text-terracotta' : '' }}"><span class="font-mono text-[10px] text-stone">05</span>Blog</a>
-                <a href="{{ route('home') }}#contacto" class="px-5 py-2 bg-espresso hover:bg-terracotta text-bone font-medium transition-colors">Contacto →</a>
+                <a href="{{ route('home') }}#productos" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">02</span>Productos</a>
+                <a href="{{ route('home') }}#okacrm" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">03</span>OkaCRM</a>
+                <a href="{{ route('home') }}#okaisp" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">04</span>OkaISP</a>
+                <a href="{{ route('blog.index') }}" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5 {{ request()->routeIs('blog.*') ? 'text-terracotta' : '' }}"><span class="font-mono text-[10px] text-stone">05</span>Blog</a>
+                <a href="{{ route('home') }}#contacto" class="pressable px-5 py-2 bg-espresso hover:bg-terracotta text-bone font-medium">Contacto →</a>
             </div>
             <button id="menu-toggle" class="md:hidden text-espresso">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>

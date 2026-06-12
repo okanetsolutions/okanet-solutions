@@ -15,14 +15,14 @@
                 <span class="ml-auto hidden sm:block">{{ $posts->total() }} {{ $posts->total() === 1 ? 'artículo' : 'artículos' }}</span>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-                <div class="lg:col-span-8">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end" data-reveal-group>
+                <div class="lg:col-span-8" data-reveal>
                     <h1 class="font-display font-medium tracking-tight leading-[0.95] text-[clamp(3rem,7vw,6rem)]">
                         Notas de<br>
                         <span class="italic font-light text-terracotta">ingeniería.</span>
                     </h1>
                 </div>
-                <div class="lg:col-span-4 lg:pb-4">
+                <div class="lg:col-span-4 lg:pb-4" data-reveal>
                     <div class="h-px w-16 bg-espresso/40 mb-5"></div>
                     <p class="text-umber leading-relaxed">
                         Lo que aprendemos construyendo software vertical con IA, contado sin marketing.
@@ -40,9 +40,9 @@
                     <p class="text-umber">Pronto publicaremos el primero.</p>
                 </div>
             @else
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-espresso/15 border border-espresso/15">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-espresso/15 border border-espresso/15" data-reveal-group>
                     @foreach ($posts as $post)
-                        <a href="{{ route('blog.show', $post) }}" class="group bg-paper hover:bg-cream p-10 transition-colors flex flex-col">
+                        <a href="{{ route('blog.show', $post) }}" class="group pressable bg-paper hover:bg-cream p-10 flex flex-col" data-reveal>
                             <div class="flex items-center justify-between font-mono text-xs text-greige mb-10">
                                 <span>{{ $post->published_at->translatedFormat('d M Y') }}</span>
                                 <span>{{ $post->readingTime() }} min</span>

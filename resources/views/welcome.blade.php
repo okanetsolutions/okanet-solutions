@@ -19,12 +19,12 @@
                 <span class="text-xl font-display font-semibold tracking-tight">Okanet<span class="text-terracotta">.</span></span>
             </a>
             <div class="hidden md:flex items-center gap-8 text-sm">
-                <a href="#productos" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">02</span>Productos</a>
-                <a href="#okacrm" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">03</span>OkaCRM</a>
-                <a href="#okaisp" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">04</span>OkaISP</a>
-                <a href="#nosotros" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">05</span>Nosotros</a>
-                <a href="{{ route('blog.index') }}" class="text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">06</span>Blog</a>
-                <a href="#contacto" class="px-5 py-2 bg-espresso hover:bg-terracotta text-bone font-medium transition-colors">Contacto →</a>
+                <a href="#productos" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">02</span>Productos</a>
+                <a href="#okacrm" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">03</span>OkaCRM</a>
+                <a href="#okaisp" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">04</span>OkaISP</a>
+                <a href="#nosotros" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">05</span>Nosotros</a>
+                <a href="{{ route('blog.index') }}" class="nav-link text-umber hover:text-espresso transition-colors flex items-baseline gap-1.5"><span class="font-mono text-[10px] text-stone">06</span>Blog</a>
+                <a href="#contacto" class="pressable px-5 py-2 bg-espresso hover:bg-terracotta text-bone font-medium">Contacto →</a>
             </div>
             <button id="menu-toggle" class="md:hidden text-espresso">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -56,15 +56,15 @@
                 </span>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-                <div class="lg:col-span-9">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end" data-reveal-group>
+                <div class="lg:col-span-9" data-reveal>
                     <h1 class="font-display font-medium tracking-tight leading-[0.95] text-[clamp(3rem,9vw,8.5rem)]">
                         Software<br>
                         <span class="italic font-light text-terracotta">hecho a mano,</span><br>
                         a escala.
                     </h1>
                 </div>
-                <div class="lg:col-span-3 lg:pb-4">
+                <div class="lg:col-span-3 lg:pb-4" data-reveal>
                     <div class="h-px w-16 bg-espresso/40 mb-5"></div>
                     <p class="text-umber leading-relaxed">
                         Plataformas verticales para industrias específicas. Un CRM para creadores de contenido. Un ERP con IA para proveedores de internet.
@@ -72,10 +72,10 @@
                 </div>
             </div>
 
-            <div class="mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                <a href="#productos" class="group inline-flex items-center gap-3 px-7 py-3.5 bg-espresso hover:bg-terracotta text-bone font-medium transition-colors">
+            <div class="mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-5" data-reveal style="--reveal-delay: 120ms">
+                <a href="#productos" class="group pressable inline-flex items-center gap-3 px-7 py-3.5 bg-espresso hover:bg-terracotta text-bone font-medium">
                     Ver productos
-                    <span class="font-mono text-xs group-hover:translate-x-1 transition-transform">→</span>
+                    <span class="font-mono text-xs group-hover:translate-x-1 transition-transform duration-200 ease-out-strong">→</span>
                 </a>
                 <a href="#contacto" class="inline-flex items-center gap-3 text-espresso hover:text-terracotta font-medium transition-colors border-b border-espresso/30 hover:border-terracotta pb-1">
                     Hablemos de tu proyecto
@@ -83,7 +83,7 @@
             </div>
 
             {{-- Metadata strip --}}
-            <div class="mt-24 pt-8 border-t border-espresso/15 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-8 font-mono text-xs">
+            <div class="mt-24 pt-8 border-t border-espresso/15 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-8 font-mono text-xs" data-reveal style="--reveal-delay: 200ms">
                 <div>
                     <div class="text-stone uppercase tracking-widest mb-1.5">Sede</div>
                     <div class="text-espresso">Caracas, Venezuela</div>
@@ -109,7 +109,7 @@
     </section>
 
     {{-- Marquee — clientes / sectores --}}
-    <div class="border-y border-espresso/15 bg-paper py-5 overflow-hidden">
+    <div class="marquee border-y border-espresso/15 bg-paper py-5 overflow-hidden">
         <div class="marquee-track flex gap-16 whitespace-nowrap font-mono text-sm text-greige">
             @for ($i = 0; $i < 2; $i++)
                 <span>★ INFLUENCERS</span>
@@ -133,7 +133,7 @@
                 <span>Productos</span>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mb-20">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mb-20" data-reveal>
                 <div class="lg:col-span-7">
                     <h2 class="font-display font-medium tracking-tight leading-[1.05] text-5xl md:text-6xl lg:text-7xl">
                         Dos productos.<br>
@@ -147,9 +147,9 @@
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-px bg-espresso/15 border border-espresso/15">
+            <div class="grid md:grid-cols-2 gap-px bg-espresso/15 border border-espresso/15" data-reveal-group>
                 {{-- OkaCRM Card — editorial / warm --}}
-                <a href="#okacrm" class="group bg-paper hover:bg-cream p-10 lg:p-12 transition-colors relative">
+                <a href="#okacrm" class="group pressable bg-paper hover:bg-cream p-10 lg:p-12 relative" data-reveal>
                     <div class="flex items-start justify-between mb-12">
                         <div class="font-mono text-xs text-greige uppercase tracking-widest">
                             <div>Producto / 01</div>
@@ -176,7 +176,7 @@
                 </a>
 
                 {{-- OkaISP Card — technical / structural --}}
-                <a href="#okaisp" class="group bg-espresso hover:bg-ink text-bone p-10 lg:p-12 transition-colors relative">
+                <a href="#okaisp" class="group pressable bg-espresso hover:bg-ink text-bone p-10 lg:p-12 relative" data-reveal>
                     <div class="flex items-start justify-between mb-12">
                         <div class="font-mono text-xs text-stone uppercase tracking-widest">
                             <div>Producto / 02</div>
@@ -215,8 +215,8 @@
                 <span class="ml-auto text-terracotta">okacrm.net</span>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
-                <div class="lg:col-span-6">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start" data-reveal-group>
+                <div class="lg:col-span-6" data-reveal>
                     <h2 class="font-display font-medium tracking-tight leading-[1.05] text-5xl md:text-6xl mb-8">
                         El CRM que los<br>
                         <span class="italic text-terracotta">influencers</span> necesitan.
@@ -251,7 +251,7 @@
                 </div>
 
                 {{-- Editorial-style mockup: creator profile card --}}
-                <div class="lg:col-span-6 lg:sticky lg:top-32">
+                <div class="lg:col-span-6 lg:sticky lg:top-32" data-reveal>
                     <div class="border border-espresso/20 bg-bone p-8 md:p-10">
                         <div class="flex items-center justify-between font-mono text-xs text-greige mb-8 pb-6 border-b border-espresso/10">
                             <span>okacrm.net / perfil</span>
@@ -323,9 +323,9 @@
                 <span class="ml-auto text-emerald-soft">okaisp · v1.0.0</span>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start" data-reveal-group>
                 {{-- Technical mockup --}}
-                <div class="lg:col-span-6 order-2 lg:order-1 lg:sticky lg:top-32">
+                <div class="lg:col-span-6 order-2 lg:order-1 lg:sticky lg:top-32" data-reveal>
                     <div class="border border-bone/15 bg-ink/50 backdrop-blur p-8 font-mono text-sm">
                         <div class="flex items-center justify-between text-xs text-stone mb-6 pb-4 border-b border-bone/10">
                             <span>okaisp / dashboard.operaciones</span>
@@ -389,7 +389,7 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 order-1 lg:order-2">
+                <div class="lg:col-span-6 order-1 lg:order-2" data-reveal>
                     <h2 class="font-display font-medium tracking-tight leading-[1.05] text-5xl md:text-6xl mb-8">
                         ERP inteligente para<br>
                         <span class="italic text-emerald-soft">proveedores de internet.</span>
@@ -436,8 +436,8 @@
                 <span class="ml-auto text-terracotta">04 ½</span>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-                <div class="lg:col-span-5 lg:order-1">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center" data-reveal-group>
+                <div class="lg:col-span-5 lg:order-1" data-reveal>
                     <h2 class="font-display font-medium tracking-tight leading-[1.05] text-5xl md:text-6xl mb-8">
                         Inteligencia<br>
                         <span class="italic text-terracotta">no decorativa.</span>
@@ -453,7 +453,7 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 lg:order-2">
+                <div class="lg:col-span-7 lg:order-2" data-reveal>
                     <figure class="border border-espresso/20 bg-espresso aspect-video overflow-hidden relative group">
                         <video
                             autoplay
@@ -490,7 +490,7 @@
                 <span>Nosotros</span>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-20">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-20" data-reveal>
                 <div class="lg:col-span-7">
                     <h2 class="font-display font-medium tracking-tight leading-[1.05] text-5xl md:text-6xl">
                         Tecnología venezolana,<br>
@@ -504,22 +504,22 @@
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-px bg-espresso/15 border border-espresso/15">
-                <div class="bg-paper p-10">
+            <div class="grid md:grid-cols-3 gap-px bg-espresso/15 border border-espresso/15" data-reveal-group>
+                <div class="bg-paper p-10" data-reveal>
                     <div class="font-mono text-xs text-greige uppercase tracking-widest mb-6">— 01</div>
                     <h3 class="font-display text-2xl font-medium mb-3">Hecha en Venezuela</h3>
                     <p class="text-umber text-sm leading-relaxed">
                         Conocemos las necesidades del mercado latinoamericano de primera mano. Eso se nota en cada decisión de producto.
                     </p>
                 </div>
-                <div class="bg-paper p-10">
+                <div class="bg-paper p-10" data-reveal>
                     <div class="font-mono text-xs text-terracotta uppercase tracking-widest mb-6">— 02</div>
                     <h3 class="font-display text-2xl font-medium mb-3">IA como pilar</h3>
                     <p class="text-umber text-sm leading-relaxed">
                         La inteligencia artificial no es un añadido. Es parte fundamental de la arquitectura y la propuesta de valor.
                     </p>
                 </div>
-                <div class="bg-paper p-10">
+                <div class="bg-paper p-10" data-reveal>
                     <div class="font-mono text-xs text-emerald-deep uppercase tracking-widest mb-6">— 03</div>
                     <h3 class="font-display text-2xl font-medium mb-3">Verticales, no genéricos</h3>
                     <p class="text-umber text-sm leading-relaxed">
@@ -539,8 +539,8 @@
                 <span>Contacto</span>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
-                <div class="lg:col-span-5">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16" data-reveal-group>
+                <div class="lg:col-span-5" data-reveal>
                     <h2 class="font-display font-medium tracking-tight leading-[1.05] text-5xl md:text-6xl mb-8">
                         Hablemos de<br>
                         <span class="italic text-terracotta">tu proyecto.</span>
@@ -569,7 +569,7 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-7">
+                <div class="lg:col-span-7" data-reveal>
                     <form class="border border-espresso/20 bg-bone p-8 md:p-10 space-y-8">
                         <div class="grid md:grid-cols-2 gap-x-6 gap-y-8">
                             <div>
@@ -595,9 +595,9 @@
                             <label class="block font-mono text-xs text-greige uppercase tracking-widest mb-2">— Mensaje</label>
                             <textarea rows="4" placeholder="Cuéntanos sobre tu proyecto..." class="w-full bg-transparent border-0 border-b border-espresso/30 px-0 py-2 text-espresso placeholder-stone focus:outline-none focus:border-terracotta transition-colors resize-none"></textarea>
                         </div>
-                        <button type="submit" class="group inline-flex items-center gap-3 px-8 py-3.5 bg-espresso hover:bg-terracotta text-bone font-medium transition-colors">
+                        <button type="submit" class="group pressable inline-flex items-center gap-3 px-8 py-3.5 bg-espresso hover:bg-terracotta text-bone font-medium">
                             Enviar mensaje
-                            <span class="font-mono text-xs group-hover:translate-x-1 transition-transform">→</span>
+                            <span class="font-mono text-xs group-hover:translate-x-1 transition-transform duration-200 ease-out-strong">→</span>
                         </button>
                     </form>
                 </div>

@@ -24,6 +24,9 @@
     --color-emerald-soft: #2e6a58;
     --color-ochre: #c97b2b;
     --color-ink: #0f0d0a;
+
+    --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @layer base {
@@ -156,6 +159,59 @@
 }
 
 @layer utilities {
+    /* Press feedback for buttons and tappable cards. Replaces transition-colors
+       so transform and color animate together without overriding each other. */
+    .pressable {
+        transition:
+            transform 160ms var(--ease-out-strong),
+            background-color 200ms ease,
+            border-color 200ms ease,
+            color 200ms ease;
+    }
+
+    .pressable:active {
+        transform: scale(0.97);
+    }
+
+    /* Animated underline for nav links — wipes in from the left on hover. */
+    .nav-link {
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -3px;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 200ms var(--ease-out-strong);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+    }
+
+    /* Scroll-reveal: hidden state only applies once JS confirms it can reveal. */
+    .js [data-reveal] {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+            opacity 500ms var(--ease-out-strong),
+            transform 500ms var(--ease-out-strong);
+        transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .js [data-reveal].is-revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
     .grain {
         background-image:
             radial-gradient(circle at 1px 1px, rgba(28, 24, 20, 0.07) 1px, transparent 0);
@@ -170,8 +226,29 @@
         animation: marquee 40s linear infinite;
     }
 
+    @media (hover: hover) and (pointer: fine) {
+        .marquee:hover .marquee-track {
+            animation-play-state: paused;
+        }
+    }
+
     @keyframes marquee {
         from { transform: translateX(0); }
         to { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .marquee-track {
+            animation: none;
+        }
+
+        .js [data-reveal] {
+            transform: none;
+            transition: opacity 300ms ease;
+        }
+
+        .pressable:active {
+            transform: none;
+        }
     }
 }
