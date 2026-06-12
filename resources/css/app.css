@@ -218,6 +218,92 @@
         background-size: 24px 24px;
     }
 
+    /* Blueprint grid — the "network" texture for the technical (ISP) world. */
+    .blueprint {
+        background-image:
+            linear-gradient(to right, rgba(245, 240, 232, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(245, 240, 232, 0.05) 1px, transparent 1px);
+        background-size: 56px 56px;
+    }
+
+    /* Scroll progress rail — replaces per-section numbered scaffolding as the
+       page's wayfinding. A single deliberate system, not a repeated eyebrow. */
+    .scroll-progress {
+        transform: scaleX(var(--progress, 0));
+        transform-origin: left;
+    }
+
+    /* Hero line-mask choreography. Each headline line sits in an overflow-clip
+       track; the inner element rises into place on load. Hidden state is scoped
+       to .js AND .hero — and the same script that adds .js also fires .is-in, so
+       a no-JS or headless render shows the headline immediately. */
+    .js .reveal-line {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 0.06em;
+    }
+
+    .js .reveal-line > * {
+        display: block;
+        transform: translateY(115%);
+        transition: transform 900ms var(--ease-out-strong);
+        transition-delay: var(--line-delay, 0ms);
+        will-change: transform;
+    }
+
+    .js .hero.is-in .reveal-line > * {
+        transform: translateY(0);
+    }
+
+    /* The seam — the connective motif between the warm world and the technical
+       world. A hairline with a single node that drifts along it. */
+    .seam {
+        background: linear-gradient(
+            to bottom,
+            color-mix(in srgb, var(--color-espresso) 18%, transparent),
+            color-mix(in srgb, var(--color-terracotta) 35%, transparent),
+            color-mix(in srgb, var(--color-espresso) 18%, transparent)
+        );
+    }
+
+    .seam-node {
+        animation: seam-drift 6s var(--ease-in-out-strong) infinite;
+    }
+
+    @keyframes seam-drift {
+        0%, 100% { top: 8%; opacity: 0; }
+        15% { opacity: 1; }
+        85% { opacity: 1; }
+        100% { top: 92%; opacity: 0; }
+    }
+
+    /* Active nav link — the scroll-spy current section. */
+    .nav-link[aria-current='true'] {
+        color: var(--color-espresso);
+    }
+
+    .nav-link[aria-current='true']::after {
+        transform: scaleX(1);
+        background: var(--color-terracotta);
+    }
+
+    /* Count-up figures hold their space to avoid layout shift while animating. */
+    .tabular {
+        font-variant-numeric: tabular-nums;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .js .reveal-line > * {
+            transform: none;
+            transition: none;
+        }
+
+        .seam-node {
+            animation: none;
+            opacity: 1;
+        }
+    }
+
     .hairline {
         background-image: linear-gradient(to right, transparent, rgba(28, 24, 20, 0.18) 30%, rgba(28, 24, 20, 0.18) 70%, transparent);
     }
