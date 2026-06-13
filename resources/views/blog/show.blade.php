@@ -4,17 +4,17 @@
 @section('description', $post->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($post->body), 150))
 
 @section('content')
-    <article class="relative pt-36 pb-24 md:pt-44 md:pb-32">
-        <div class="absolute inset-0 grain opacity-50 pointer-events-none"></div>
+    <article class="relative pt-36 pb-24 md:pt-44 md:pb-32 bg-paper">
+        <div class="absolute inset-0 schematic mask-fade opacity-60 pointer-events-none"></div>
 
         <div class="relative max-w-3xl mx-auto px-6">
-            <div class="flex items-center gap-3 mb-12 font-mono text-xs text-greige uppercase tracking-widest">
-                <a href="{{ route('blog.index') }}" class="hover:text-terracotta transition-colors">← Blog</a>
-                <span class="h-px w-12 bg-espresso/30"></span>
+            <div class="flex items-center gap-3 mb-10 font-mono text-xs text-greige">
+                <a href="{{ route('blog.index') }}" class="hover:text-espresso transition-colors">← Blog</a>
+                <span class="h-px w-8 bg-espresso/20"></span>
                 @if ($post->isPublished())
                     <span>{{ $post->published_at->translatedFormat('d M Y') }}</span>
                 @else
-                    <span class="text-ochre">Borrador</span>
+                    <span class="px-1.5 py-0.5 border border-espresso/25 rounded-sm text-espresso">Borrador</span>
                 @endif
                 <span class="ml-auto">{{ $post->readingTime() }} min de lectura</span>
             </div>
@@ -24,7 +24,7 @@
             </h1>
 
             @if ($post->excerpt)
-                <p class="text-umber text-lg md:text-xl leading-relaxed mb-12 border-l-2 border-terracotta pl-5 italic">
+                <p class="text-umber text-lg md:text-xl leading-relaxed mb-12 pt-6 border-t border-espresso/15">
                     {{ $post->excerpt }}
                 </p>
             @endif

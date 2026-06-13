@@ -4,28 +4,24 @@
 @section('description', 'Artículos sobre software, IA y tecnología desde Caracas, por el equipo de Okanet Solutions.')
 
 @section('content')
-    <section class="relative pt-36 pb-16 md:pt-44 md:pb-20 overflow-hidden">
-        <div class="absolute inset-0 grain opacity-50 pointer-events-none"></div>
+    <section class="relative pt-36 pb-16 md:pt-44 md:pb-20 overflow-hidden bg-paper">
+        <div class="absolute inset-0 schematic mask-fade opacity-70 pointer-events-none"></div>
 
         <div class="relative max-w-7xl mx-auto px-6">
-            <div class="flex items-center gap-3 mb-12 font-mono text-xs text-greige uppercase tracking-widest">
-                <span>(B)</span>
-                <span class="h-px w-12 bg-espresso/30"></span>
-                <span>Blog</span>
-                <span class="ml-auto hidden sm:block">{{ $posts->total() }} {{ $posts->total() === 1 ? 'artículo' : 'artículos' }}</span>
+            <div class="flex items-center gap-3 mb-10 font-mono text-xs text-greige">
+                <span class="text-signal-deep">// blog</span>
+                <span class="ml-auto">{{ $posts->total() }} {{ $posts->total() === 1 ? 'artículo' : 'artículos' }}</span>
             </div>
 
             <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end" data-reveal-group>
                 <div class="lg:col-span-8" data-reveal>
-                    <h1 class="font-display font-medium tracking-tight leading-[0.95] text-[clamp(3rem,7vw,6rem)]">
-                        Notas de<br>
-                        <span class="italic font-light text-terracotta">ingeniería.</span>
+                    <h1 class="font-display font-extrabold tracking-tight leading-[0.98] text-[clamp(2.6rem,7vw,5rem)]">
+                        Notas de <span class="text-signal-deep">ingeniería</span>.
                     </h1>
                 </div>
                 <div class="lg:col-span-4 lg:pb-4" data-reveal>
-                    <div class="h-px w-16 bg-espresso/40 mb-5"></div>
                     <p class="text-umber leading-relaxed">
-                        Lo que aprendemos construyendo software vertical con IA, contado sin marketing.
+                        Lo que aprendemos automatizando operaciones reales, contado sin marketing.
                     </p>
                 </div>
             </div>
