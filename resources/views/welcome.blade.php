@@ -90,8 +90,8 @@
             <div class="max-w-4xl">
                 <h1 class="font-display font-extrabold tracking-[-0.035em] leading-[0.95] text-[clamp(2.6rem,7vw,5.25rem)]">
                     <span class="reveal-line" style="--line-delay: 90ms"><span>Diseñamos los sistemas</span></span>
-                    <span class="reveal-line" style="--line-delay: 170ms"><span>que ponen tu operación</span></span>
-                    <span class="reveal-line" style="--line-delay: 250ms"><span>a funcionar <span class="text-signal">sola</span>.</span></span>
+                    <span class="reveal-line" style="--line-delay: 170ms"><span>que automatizan tu operación</span></span>
+                    <span class="reveal-line" style="--line-delay: 250ms"><span>para que <span class="text-signal">escale</span>.</span></span>
                 </h1>
             </div>
 
