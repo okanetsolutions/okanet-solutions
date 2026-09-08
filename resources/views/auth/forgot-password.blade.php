@@ -9,6 +9,6 @@
             <div><label for="email">Correo electrónico</label><input id="email" name="email" type="email" autocomplete="email" value="{{ old('email') }}" required autofocus></div>
             <button class="button" type="submit">Enviar enlace</button>
         </form>
-        <a class="text-link" href="{{ route('login') }}">Volver a iniciar sesión</a>
+        <a class="text-link" href="{{ route('login') }}" wire:navigate>Volver a iniciar sesión</a>
     </div>
 @endsection

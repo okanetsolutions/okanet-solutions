@@ -9,7 +9,7 @@
 
         <div class="relative max-w-3xl mx-auto px-6">
             <div class="flex items-center gap-3 mb-10 font-mono text-xs text-greige">
-                <a href="{{ route('blog.index') }}" class="hover:text-espresso transition-colors">← Blog</a>
+                <a href="{{ route('blog.index') }}" class="hover:text-espresso transition-colors" wire:navigate>← Blog</a>
                 <span class="h-px w-8 bg-espresso/20"></span>
                 @if ($post->isPublished())
                     <span>{{ $post->published_at->translatedFormat('d M Y') }}</span>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="mt-16 pt-8 border-t border-espresso/15 flex items-center justify-between">
-                <a href="{{ route('blog.index') }}" class="inline-flex items-center gap-3 text-espresso hover:text-terracotta font-medium transition-colors border-b border-espresso/30 hover:border-terracotta pb-1">
+                <a href="{{ route('blog.index') }}" class="inline-flex items-center gap-3 text-espresso hover:text-terracotta font-medium transition-colors border-b border-espresso/30 hover:border-terracotta pb-1" wire:navigate>
                     ← Volver al blog
                 </a>
                 <span class="font-mono text-xs text-greige">Okanet Solutions · Caracas, VE</span>

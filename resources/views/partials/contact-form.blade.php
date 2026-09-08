@@ -27,7 +27,7 @@
             <textarea id="contact-message" name="message" rows="4" maxlength="1500" placeholder="Cuéntanos brevemente sobre tu operación y lo que quieres mejorar." aria-describedby="message-guidance"></textarea>
             <p id="message-guidance" class="field-note">No incluyas contraseñas, datos bancarios ni información confidencial.</p>
         </div>
-        <p class="contact-privacy">Usaremos la información que compartas para atender tu consulta. Preparar el mensaje no lo envía ni lo guarda en nuestros servidores. Consulta la <a href="{{ route('privacy') }}">política de privacidad</a>.</p>
+        <p class="contact-privacy">Usaremos la información que compartas para atender tu consulta. Preparar el mensaje no lo envía ni lo guarda en nuestros servidores. Consulta la <a href="{{ route('privacy') }}" wire:navigate>política de privacidad</a>.</p>
         <button class="button" type="submit">Preparar mensaje <span aria-hidden="true">→</span>
         </button>
     </fieldset>

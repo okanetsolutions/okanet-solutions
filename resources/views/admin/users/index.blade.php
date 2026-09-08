@@ -9,7 +9,7 @@
             <p class="mt-2 text-sm text-umber">
                 {{ $users->total() }} {{ $users->total() === 1 ? 'resultado' : 'resultados' }}
                 @if ($search !== '')
-                    para «{{ $search }}» · <a href="{{ route('admin.users.index') }}" class="font-medium text-terracotta hover:text-espresso">Limpiar búsqueda</a>
+                    para «{{ $search }}» · <a href="{{ route('admin.users.index') }}" class="font-medium text-terracotta hover:text-espresso" wire:navigate>Limpiar búsqueda</a>
                 @else
                     en el panel
                 @endif
@@ -28,7 +28,7 @@
         <div class="border border-espresso/15 bg-paper p-12 text-center">
             <p class="font-medium">No encontramos usuarios.</p>
             <p class="mt-2 text-sm text-umber">Prueba con otro nombre o correo.</p>
-            <a href="{{ route('admin.users.index') }}" class="mt-5 inline-block text-sm font-medium text-terracotta hover:text-espresso">Limpiar búsqueda</a>
+            <a href="{{ route('admin.users.index') }}" class="mt-5 inline-block text-sm font-medium text-terracotta hover:text-espresso" wire:navigate>Limpiar búsqueda</a>
         </div>
     @else
         <div class="overflow-x-auto border border-espresso/15 bg-paper">
@@ -64,7 +64,7 @@
                             </td>
                             <td class="px-5 py-4 font-mono text-xs tabular text-umber">{{ $user->created_at->format('d/m/Y') }}</td>
                             <td class="px-5 py-4 text-right">
-                                <a href="{{ route('admin.users.edit', $user) }}" class="text-sm font-medium text-terracotta hover:text-espresso">Editar</a>
+                                <a href="{{ route('admin.users.edit', $user) }}" class="text-sm font-medium text-terracotta hover:text-espresso" wire:navigate>Editar</a>
                             </td>
                         </tr>
                     @endforeach

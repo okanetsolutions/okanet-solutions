@@ -41,17 +41,17 @@
             <article class="account-panel">
                 <h3>¿Tu correo aparece en una filtración?</h3>
                 <p>Crea tu cuenta con un correo corporativo y verifícalo. Recibe el resultado general al momento y contacta con nuestro equipo para obtener el informe completo.</p>
-                <a class="button" href="{{ auth()->check() ? route('security.dashboard') : route('register') }}">Consultar mi correo</a>
+                <a class="button" href="{{ auth()->check() ? route('security.dashboard') : route('register') }}" wire:navigate>Consultar mi correo</a>
                 <p class="account-help">Consulta de filtraciones de credenciales con Breachsense. El detalle se mantiene protegido y no mostramos contraseñas ni datos sensibles. Sujeto a disponibilidad del servicio.</p>
             </article>
             <article class="account-panel">
                 <h3>Una primera evaluación de tu dominio.</h3>
                 <p>Verifica tu correo y el control de tu dominio mediante un registro DNS. Autoriza la revisión y recibe un informe preliminar de nuestro equipo en 24–48 horas.</p>
-                <a class="button" href="{{ auth()->check() ? route('security.dashboard') : route('register') }}">Solicitar evaluación</a>
+                <a class="button" href="{{ auth()->check() ? route('security.dashboard') : route('register') }}" wire:navigate>Solicitar evaluación</a>
                 <p class="account-help">El plazo comienza tras la verificación y autorización. Las pruebas de penetración adicionales requieren un alcance acordado por escrito.</p>
             </article>
         </div>
-        @guest<p>¿Ya tienes cuenta? <a class="text-link" href="{{ route('login') }}">Inicia sesión</a>.</p>@endguest
+        @guest<p>¿Ya tienes cuenta? <a class="text-link" href="{{ route('login') }}" wire:navigate>Inicia sesión</a>.</p>@endguest
     </section>
     <section class="section-space site-width">
         <div class="section-intro">
@@ -68,7 +68,7 @@
                     <li>Gestión de accesos y permisos</li>
                     <li>Recomendaciones de protección</li>
                 </ul>
-                <a href="{{ route('contact', ['interest' => 'Protección de ciberseguridad']) }}" class="text-link">Consultar sobre protección <span aria-hidden="true">↗</span>
+                <a href="{{ route('contact', ['interest' => 'Protección de ciberseguridad']) }}" class="text-link" wire:navigate>Consultar sobre protección <span aria-hidden="true">↗</span>
                 </a>
             </article>
             <article>
@@ -80,7 +80,7 @@
                     <li>Hallazgos, evidencia y severidad</li>
                     <li>Recomendaciones de corrección</li>
                 </ul>
-                <a href="{{ route('contact', ['interest' => 'Pruebas de penetración']) }}" class="text-link">Consultar sobre pentesting <span aria-hidden="true">↗</span>
+                <a href="{{ route('contact', ['interest' => 'Pruebas de penetración']) }}" class="text-link" wire:navigate>Consultar sobre pentesting <span aria-hidden="true">↗</span>
                 </a>
             </article>
         </div>

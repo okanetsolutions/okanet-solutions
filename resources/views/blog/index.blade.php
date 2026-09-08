@@ -15,7 +15,7 @@
             <div class="blog-empty">
                 <h2>Estamos preparando nuestras primeras notas.</h2>
                 <p>Pronto compartiremos experiencias del equipo. Mientras tanto, puedes conocer nuestros productos o conversar sobre tu proyecto.</p>
-                <a class="text-link" href="{{ route('products') }}">Explorar productos <span aria-hidden="true">↗</span>
+                <a class="text-link" href="{{ route('products') }}" wire:navigate>Explorar productos <span aria-hidden="true">↗</span>
                 </a>
             </div>
         @else
@@ -28,12 +28,12 @@
                     </div>
                     <div>
                         <h2>
-                            <a href="{{ route('blog.show', $post) }}">{{ $post->title }}</a>
+                            <a href="{{ route('blog.show', $post) }}" wire:navigate>{{ $post->title }}</a>
                         </h2>
                         @if ($post->excerpt)
                             <p>{{ $post->excerpt }}</p>
                         @endif
-                        <a href="{{ route('blog.show', $post) }}" class="text-link" aria-label="{{ 'Leer artículo: '.$post->title }}">Leer artículo <span aria-hidden="true">↗</span>
+                        <a href="{{ route('blog.show', $post) }}" class="text-link" aria-label="{{ 'Leer artículo: '.$post->title }}" wire:navigate>Leer artículo <span aria-hidden="true">↗</span>
                         </a>
                     </div>
                 </article>

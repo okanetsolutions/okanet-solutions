@@ -5,7 +5,7 @@
 @section('content')
     <div class="flex items-center justify-between mb-10">
         <h1 class="font-display font-medium tracking-tight text-3xl">Artículos</h1>
-        <a href="{{ route('admin.posts.create') }}" class="group inline-flex items-center gap-3 px-6 py-2.5 bg-espresso hover:bg-terracotta text-bone font-medium text-sm transition-colors">
+        <a href="{{ route('admin.posts.create') }}" class="group inline-flex items-center gap-3 px-6 py-2.5 bg-espresso hover:bg-terracotta text-bone font-medium text-sm transition-colors" wire:navigate>
             Nuevo artículo
             <span class="font-mono text-xs group-hover:translate-x-1 transition-transform">→</span>
         </a>
@@ -21,7 +21,7 @@
             @foreach ($posts as $post)
                 <div class="px-6 py-5 flex items-center gap-6">
                     <div class="flex-1 min-w-0">
-                        <a href="{{ route('admin.posts.edit', $post) }}" class="font-display text-lg font-medium hover:text-terracotta transition-colors block truncate">
+                        <a href="{{ route('admin.posts.edit', $post) }}" class="font-display text-lg font-medium hover:text-terracotta transition-colors block truncate" wire:navigate>
                             {{ $post->title }}
                         </a>
                         <div class="font-mono text-xs text-greige mt-1">
@@ -35,7 +35,7 @@
                     @endif
                     <div class="flex items-center gap-4 shrink-0 font-mono text-xs">
                         <a href="{{ route('blog.show', $post) }}" target="_blank" class="text-greige hover:text-espresso transition-colors">Ver</a>
-                        <a href="{{ route('admin.posts.edit', $post) }}" class="text-greige hover:text-espresso transition-colors">Editar</a>
+                        <a href="{{ route('admin.posts.edit', $post) }}" class="text-greige hover:text-espresso transition-colors" wire:navigate>Editar</a>
                         <form method="POST" action="{{ route('admin.posts.destroy', $post) }}" onsubmit="return confirm('¿Eliminar «{{ $post->title }}»? Esta acción no se puede deshacer.')">
                             @csrf
                             @method('DELETE')

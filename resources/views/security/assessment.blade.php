@@ -1,7 +1,7 @@
 @extends('layouts.account')
 @section('title', 'Evaluación de dominio — Okanet Solutions')
 @section('account-content')
-    <a class="text-link" href="{{ route('security.dashboard') }}">← Mis evaluaciones</a>
+    <a class="text-link" href="{{ route('security.dashboard') }}" wire:navigate>← Mis evaluaciones</a>
     <div class="account-heading"><h1>{{ $assessment->domain }}</h1><p>{{ $assessment->statusLabel() }}</p></div>
     @if($assessment->status === \App\Models\SecurityAssessment::PendingVerification)
         <div class="account-columns">

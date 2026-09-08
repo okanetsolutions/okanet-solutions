@@ -1,7 +1,7 @@
 @extends('layouts.account')
 @section('title', 'Gestionar evaluación — Okanet Solutions')
 @section('account-content')
-    <a class="text-link" href="{{ route('admin.assessments.index') }}">← Evaluaciones y solicitudes</a>
+    <a class="text-link" href="{{ route('admin.assessments.index') }}" wire:navigate>← Evaluaciones y solicitudes</a>
     <div class="account-heading"><h1>{{ $assessment->domain }}</h1><p>{{ $assessment->statusLabel() }} · {{ $assessment->user->name }} · {{ $assessment->user->email }}</p></div>
     <div class="account-columns">
         <section class="account-panel">

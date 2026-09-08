@@ -49,7 +49,7 @@
             <h2>Un equipo en Caracas.</h2>
             <p>Av. Rómulo Gallegos con Calle Pedro Manrique, Edif. Centro ALOA, PP-36-L.<br>Caracas 1071, Venezuela · RIF J-41299500-6</p>
         </div>
-        <a class="text-link" href="{{ route('contact') }}">Conversemos <span aria-hidden="true">↗</span>
+        <a class="text-link" href="{{ route('contact') }}" wire:navigate>Conversemos <span aria-hidden="true">↗</span>
         </a>
     </section>
     @include('partials.cta')

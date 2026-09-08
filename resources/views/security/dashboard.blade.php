@@ -33,7 +33,7 @@
                 @if($scanAvailable)
                     <form method="post" action="{{ route('security.email.store') }}" class="account-form">
                         @csrf
-                        <label class="account-check"><input type="checkbox" name="consent" value="1" required><span>Solicito la consulta de mi correo y autorizo su envío a Breachsense para obtener el resultado. <a href="{{ route('privacy') }}">Cómo tratamos tus datos</a>.</span></label>
+                        <label class="account-check"><input type="checkbox" name="consent" value="1" required><span>Solicito la consulta de mi correo y autorizo su envío a Breachsense para obtener el resultado. <a href="{{ route('privacy') }}" wire:navigate>Cómo tratamos tus datos</a>.</span></label>
                         <button class="button" type="submit">{{ $scan ? 'Volver a intentar' : 'Consultar mi correo' }}</button>
                     </form>
                 @else
@@ -56,7 +56,7 @@
     <section class="account-section">
         <h2>Tus evaluaciones</h2>
         @forelse($assessments as $assessment)
-            <a class="account-row" href="{{ route('security.assessments.show', $assessment) }}"><strong>{{ $assessment->domain }}</strong><span>{{ $assessment->statusLabel() }}</span><span>Ver solicitud →</span></a>
+            <a class="account-row" href="{{ route('security.assessments.show', $assessment) }}" wire:navigate><strong>{{ $assessment->domain }}</strong><span>{{ $assessment->statusLabel() }}</span><span>Ver solicitud →</span></a>
         @empty
             <p>Aquí aparecerán los dominios que registres y sus informes.</p>
         @endforelse
