@@ -34,6 +34,16 @@ it('marks the parent product navigation as current on product detail pages', fun
         ->toBe(route('products'));
 });
 
+it('leads the security page with an actionable risk assessment banner', function (): void {
+    $this->get(route('security'))
+        ->assertSee('Evaluación autorizada · Informe accionable')
+        ->assertSee('Conoce tus riesgos.')
+        ->assertSee('Identificar')
+        ->assertSee('Priorizar')
+        ->assertSee('Corregir')
+        ->assertSee('href="#consultas-gratuitas"', false);
+});
+
 it('preselects the requested service and explains the third party handoff before contact', function (): void {
     $this->get(route('contact', ['interest' => 'Pruebas de penetración']))
         ->assertSee('value="Pruebas de penetración" selected', false)

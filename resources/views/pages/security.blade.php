@@ -3,9 +3,9 @@
 @section('description', 'Evaluación de riesgos, protección de ciberseguridad y pruebas de penetración autorizadas. Hallazgos claros y recomendaciones para tu equipo.')
 @section('content')
     <section class="security-hero">
-        <div class="site-width security-hero-grid">
-            <div>
-                <p class="section-label">Ciberseguridad</p>
+        <div class="site-width security-hero-panel">
+            <div class="security-hero-content">
+                <p class="security-hero-status"><span aria-hidden="true"></span> Evaluación autorizada · Informe accionable</p>
                 <h1>Conoce tus riesgos.<br>
                     <span>Actúa con criterio.</span>
                 </h1>
@@ -14,8 +14,11 @@
                 </a>
             </div>
             <div class="security-deliverable">
-                <p>Del hallazgo a la acción</p>
-                <h2>Un informe que tu equipo<br>puede utilizar.</h2>
+                <div class="security-deliverable-heading">
+                    <p>Del hallazgo a la acción</p>
+                    <h2>Un informe que tu equipo puede utilizar.</h2>
+                    <span class="security-scope">Siempre con autorización y alcance acordado.</span>
+                </div>
                 <ol>
                     <li>
                         <span>Identificar</span>
@@ -30,7 +33,6 @@
                         <p>Qué pasos tomar para reducir el riesgo.</p>
                     </li>
                 </ol>
-                <span class="security-scope">Siempre con autorización y alcance acordado.</span>
             </div>
         </div>
     </section>
