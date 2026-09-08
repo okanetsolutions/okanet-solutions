@@ -10,13 +10,15 @@
 <body class="bg-bone text-espresso antialiased font-sans selection:bg-terracotta selection:text-bone min-h-screen">
 
     <nav class="bg-espresso text-bone">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-6">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a href="{{ route('home') }}" class="flex items-center gap-3">
                     <div class="w-8 h-8 bg-terracotta flex items-center justify-center font-display font-bold text-bone text-sm">O</div>
                     <span class="font-display font-semibold tracking-tight">Okanet <span class="font-mono text-xs text-stone font-normal">/ admin</span></span>
                 </a>
-                <a href="{{ route('admin.posts.index') }}" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-bone transition-colors">Artículos</a>
+                <a href="{{ route('admin.assessments.index') }}" @class(['font-mono text-xs uppercase tracking-widest hover:text-bone transition-colors', 'text-bone' => request()->routeIs('admin.assessments.*', 'admin.email.*'), 'text-stone' => ! request()->routeIs('admin.assessments.*', 'admin.email.*')]) @if(request()->routeIs('admin.assessments.*', 'admin.email.*')) aria-current="page" @endif>Solicitudes</a>
+                <a href="{{ route('admin.users.index') }}" @class(['font-mono text-xs uppercase tracking-widest hover:text-bone transition-colors', 'text-bone' => request()->routeIs('admin.users.*'), 'text-stone' => ! request()->routeIs('admin.users.*')]) @if(request()->routeIs('admin.users.*')) aria-current="page" @endif>Usuarios</a>
+                <a href="{{ route('admin.posts.index') }}" @class(['font-mono text-xs uppercase tracking-widest hover:text-bone transition-colors', 'text-bone' => request()->routeIs('admin.posts.*'), 'text-stone' => ! request()->routeIs('admin.posts.*')]) @if(request()->routeIs('admin.posts.*')) aria-current="page" @endif>Artículos</a>
             </div>
             <div class="flex items-center gap-5">
                 <a href="{{ route('blog.index') }}" class="font-mono text-xs text-stone hover:text-bone transition-colors">Ver blog ↗</a>

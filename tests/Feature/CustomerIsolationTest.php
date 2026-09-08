@@ -90,7 +90,7 @@ it('blocks customer blog administration and draft access on the web and API', fu
     $this->assertDatabaseCount('posts', 1);
 });
 
-it('grants and revokes staff access only through the administration command', function (): void {
+it('grants and revokes staff access through the administration command', function (): void {
     $user = User::factory()->create();
     $this->artisan('security:staff', ['email' => $user->email])->assertSuccessful();
     expect($user->refresh()->is_staff)->toBeTrue();

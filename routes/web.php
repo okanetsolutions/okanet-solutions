@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\SecurityAssessmentController as AdminAssessmentController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
@@ -67,6 +68,7 @@ Route::middleware([PrivateResponse::class, 'auth', 'verified'])->prefix('ciberse
 
 Route::middleware([PrivateResponse::class, 'auth', 'can:staff'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('posts', AdminPostController::class)->except('show');
+    Route::resource('users', AdminUserController::class)->only(['index', 'edit', 'update']);
     Route::get('/evaluaciones', [AdminAssessmentController::class, 'index'])->name('assessments.index');
     Route::get('/evaluaciones/{assessment}', [AdminAssessmentController::class, 'show'])->name('assessments.show');
     Route::post('/evaluaciones/{assessment}/iniciar', [AdminAssessmentController::class, 'start'])->name('assessments.start');
