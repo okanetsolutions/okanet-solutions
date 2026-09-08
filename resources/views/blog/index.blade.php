@@ -5,11 +5,11 @@
 
 @section('content')
     <section class="relative pt-36 pb-16 md:pt-44 md:pb-20 overflow-hidden bg-paper">
-        <div class="absolute inset-0 schematic mask-fade opacity-70 pointer-events-none"></div>
+
 
         <div class="relative max-w-7xl mx-auto px-6">
             <div class="flex items-center gap-3 mb-10 font-mono text-xs text-greige">
-                <span class="text-signal-deep">// blog</span>
+                <span class="text-signal-deep">Blog</span>
                 <span class="ml-auto">{{ $posts->total() }} {{ $posts->total() === 1 ? 'artículo' : 'artículos' }}</span>
             </div>
 
@@ -21,7 +21,7 @@
                 </div>
                 <div class="lg:col-span-4 lg:pb-4" data-reveal>
                     <p class="text-umber leading-relaxed">
-                        Lo que aprendemos automatizando operaciones reales, contado sin marketing.
+                        Experiencias y notas del equipo sobre desarrollo de software, automatización y tecnología.
                     </p>
                 </div>
             </div>

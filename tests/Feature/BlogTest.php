@@ -2,13 +2,14 @@
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\delete;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-uses(Illuminate\Foundation\Testing\RefreshDatabase::class);
+uses(RefreshDatabase::class);
 
 it('shows published posts on the blog index', function () {
     $published = Post::factory()->create(['title' => 'Artículo publicado']);
@@ -17,6 +18,8 @@ it('shows published posts on the blog index', function () {
     get('/blog')
         ->assertOk()
         ->assertSee('Artículo publicado')
+        ->assertSee(route('home').'#seguridad', false)
+        ->assertSee('Ciberseguridad')
         ->assertDontSee('Borrador secreto');
 });
 
