@@ -7,6 +7,7 @@
                 <a href="{{ route('security.dashboard') }}">Mi seguridad</a>
                 @can('staff')
                     <a href="{{ route('admin.assessments.index') }}">Evaluaciones y solicitudes</a>
+                    <a href="{{ route('admin.users.index') }}">Usuarios</a>
                     <a href="{{ route('admin.posts.index') }}">Blog</a>
                 @endcan
                 <form method="post" action="{{ route('logout') }}">@csrf<button class="text-link" type="submit">Cerrar sesión</button></form>
