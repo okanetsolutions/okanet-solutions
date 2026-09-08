@@ -4,65 +4,43 @@
 @section('description', 'Artículos sobre software, IA y tecnología desde Caracas, por el equipo de Okanet Solutions.')
 
 @section('content')
-    <section class="relative pt-36 pb-16 md:pt-44 md:pb-20 overflow-hidden bg-paper">
-
-
-        <div class="relative max-w-7xl mx-auto px-6">
-            <div class="flex items-center gap-3 mb-10 font-mono text-xs text-greige">
-                <span class="text-signal-deep">Blog</span>
-                <span class="ml-auto">{{ $posts->total() }} {{ $posts->total() === 1 ? 'artículo' : 'artículos' }}</span>
-            </div>
-
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end" data-reveal-group>
-                <div class="lg:col-span-8" data-reveal>
-                    <h1 class="font-display font-extrabold tracking-tight leading-[0.98] text-[clamp(2.6rem,7vw,5rem)]">
-                        Notas de <span class="text-signal-deep">ingeniería</span>.
-                    </h1>
-                </div>
-                <div class="lg:col-span-4 lg:pb-4" data-reveal>
-                    <p class="text-umber leading-relaxed">
-                        Experiencias y notas del equipo sobre desarrollo de software, automatización y tecnología.
-                    </p>
-                </div>
-            </div>
-        </div>
+    <section class="page-hero site-width">
+        <p class="section-label">El blog de Okanet</p>
+        <h1>Notas de <span>ingeniería.</span>
+        </h1>
+        <p class="page-lead">Experiencias y notas del equipo sobre desarrollo de software, automatización y tecnología.</p>
     </section>
-
-    <section class="pb-24 md:pb-32">
-        <div class="max-w-7xl mx-auto px-6">
-            @if ($posts->isEmpty())
-                <div class="border border-espresso/15 bg-paper p-16 text-center">
-                    <p class="font-mono text-xs text-greige uppercase tracking-widest mb-3">// sin artículos aún</p>
-                    <p class="text-umber">Pronto publicaremos el primero.</p>
-                </div>
-            @else
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-espresso/15 border border-espresso/15" data-reveal-group>
-                    @foreach ($posts as $post)
-                        <a href="{{ route('blog.show', $post) }}" class="group pressable bg-paper hover:bg-cream p-10 flex flex-col" data-reveal>
-                            <div class="flex items-center justify-between font-mono text-xs text-greige mb-10">
-                                <span>{{ $post->published_at->translatedFormat('d M Y') }}</span>
-                                <span>{{ $post->readingTime() }} min</span>
-                            </div>
-                            <h2 class="font-display text-2xl md:text-3xl font-medium tracking-tight leading-tight mb-4 group-hover:text-terracotta transition-colors">
-                                {{ $post->title }}
-                            </h2>
-                            @if ($post->excerpt)
-                                <p class="text-umber text-sm leading-relaxed mb-8 line-clamp-3">{{ $post->excerpt }}</p>
-                            @endif
-                            <div class="mt-auto flex items-center gap-2 text-terracotta font-medium text-sm">
-                                Leer artículo
-                                <span class="font-mono group-hover:translate-x-1 transition-transform">→</span>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
-
-                @if ($posts->hasPages())
-                    <div class="mt-12">
-                        {{ $posts->links() }}
+    <section class="site-width blog-posts" aria-label="Artículos del blog">
+        @if ($posts->isEmpty())
+            <div class="blog-empty">
+                <h2>Estamos preparando nuestras primeras notas.</h2>
+                <p>Pronto compartiremos experiencias del equipo. Mientras tanto, puedes conocer nuestros productos o conversar sobre tu proyecto.</p>
+                <a class="text-link" href="{{ route('products') }}">Explorar productos <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+        @else
+            <p class="blog-count">{{ $posts->total() }} {{ $posts->total() === 1 ? 'artículo' : 'artículos' }}</p>
+            @foreach ($posts as $post)
+                <article class="blog-post-row">
+                    <div class="blog-post-meta">
+                        <time datetime="{{ $post->published_at->toDateString() }}">{{ $post->published_at->translatedFormat('d M Y') }}</time>
+                        <span>{{ $post->readingTime() }} min de lectura</span>
                     </div>
-                @endif
+                    <div>
+                        <h2>
+                            <a href="{{ route('blog.show', $post) }}">{{ $post->title }}</a>
+                        </h2>
+                        @if ($post->excerpt)
+                            <p>{{ $post->excerpt }}</p>
+                        @endif
+                        <a href="{{ route('blog.show', $post) }}" class="text-link" aria-label="{{ 'Leer artículo: '.$post->title }}">Leer artículo <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                </article>
+            @endforeach
+            @if ($posts->hasPages())
+                <div class="mt-12">{{ $posts->links() }}</div>
             @endif
-        </div>
+        @endif
     </section>
 @endsection

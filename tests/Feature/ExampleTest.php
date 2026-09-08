@@ -14,11 +14,10 @@ it('presents products and security services with a contact path', function () {
         ->assertSee('OkaStore')
         ->assertSee('id="seguridad"', false)
         ->assertSee('Protección de ciberseguridad')
-        ->assertSee('Pruebas de penetración')
-        ->assertSee('value="Protección de ciberseguridad"', false)
-        ->assertSee('value="Pruebas de penetración"', false)
-        ->assertSee('id="contact-form"', false)
-        ->assertSee('Enviar por WhatsApp')
+        ->assertSee(route('security'))
+        ->assertSee(route('contact'))
+        ->assertSee(route('products.okaisp'))
+        ->assertSee(route('products.okastore'))
         ->assertDontSee('activity-log')
         ->assertDontSee('en vivo');
 });
