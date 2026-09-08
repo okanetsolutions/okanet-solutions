@@ -4,21 +4,29 @@
     <div class="account-heading"><h1>Conoce tu exposición.</h1><p>Tu correo está verificado. Elige por dónde empezar.</p></div>
     <div class="account-columns">
         <section class="account-panel" aria-labelledby="email-title">
-            <p class="account-help">Consulta gratuita</p>
+            <p class="account-help">Consulta gratuita · Resultado inmediato</p>
             <h2 id="email-title">Tu correo corporativo</h2>
             @if($scan?->status === \App\Models\EmailScan::Completed)
                 <p class="account-result">{{ $scan->exposure_count > 0 ? 'Encontramos exposición.' : 'No encontramos exposición.' }}</p>
-                <p><strong>{{ $scan->exposure_count }}</strong> {{ $scan->exposure_count === 1 ? 'registro asociado' : 'registros asociados' }} a <strong>{{ $scan->maskedEmail() }}</strong> en las filtraciones de credenciales consultadas.</p>
-                <p class="account-help">Consulta: {{ $scan->checked_at->format('d/m/Y H:i') }} UTC. Fuente: Breachsense, base de filtraciones de credenciales. Los registros no equivalen necesariamente a filtraciones distintas. No encontrar resultados no garantiza ausencia de exposición.</p>
+                <p>La revisión de <strong>{{ $scan->maskedEmail() }}</strong> está lista.</p>
+                <div class="account-report-preview" aria-hidden="true">
+                    <div class="account-report-preview-data">
+                        <span>Registros asociados</span><i></i>
+                        <span>Fuentes identificadas</span><i></i>
+                        <span>Contexto del hallazgo</span><i></i>
+                    </div>
+                    <span class="account-report-preview-label">Detalle protegido</span>
+                </div>
+                <p>Mostramos solo el resultado general para proteger la información. Contacta con nuestro equipo para recibir el informe completo.</p>
+                <p class="account-help">Consulta: {{ $scan->checked_at->format('d/m/Y H:i') }} UTC. Fuente: Breachsense, base de filtraciones de credenciales. No encontrar resultados no garantiza ausencia de exposición.</p>
                 @if($scan->details_requested_at)
-                    <p class="account-notice">Solicitud de información recibida. Te contactaremos en tu correo verificado.</p>
+                    <p class="account-notice">Recibimos tu solicitud del informe completo. Te contactaremos en tu correo verificado.</p>
                 @else
-                    <form method="post" action="{{ route('security.email.details', $scan) }}">@csrf<button class="button" type="submit">Solicitar más información</button></form>
-                    <p class="account-help">Al solicitarla, autorizas que te contactemos sobre los hallazgos y nuestros servicios de seguridad.</p>
+                    <form method="post" action="{{ route('security.email.details', $scan) }}">@csrf<button class="button" type="submit">Solicitar informe completo</button></form>
+                    <p class="account-help">Al solicitarlo, autorizas que te contactemos sobre el informe, los hallazgos y nuestros servicios de seguridad.</p>
                 @endif
             @elseif($scan?->status === \App\Models\EmailScan::Queued)
-                <p class="account-notice" role="status">Tu consulta está en cola. Estamos preparando el resultado.</p>
-                <a class="button" href="{{ route('security.dashboard') }}">Actualizar resultado</a>
+                <p class="account-notice" role="status">Tu consulta anterior sigue en proceso. No necesitas actualizar esta página; te avisaremos cuando termine.</p>
             @else
                 @if($scan?->status === \App\Models\EmailScan::Failed)<p class="account-notice account-error">No pudimos completar la consulta. No hay un resultado disponible; puedes volver a intentarlo.</p>@endif
                 <p>Comprueba si <strong>{{ auth()->user()->email }}</strong> aparece en las filtraciones de credenciales de Breachsense.</p>

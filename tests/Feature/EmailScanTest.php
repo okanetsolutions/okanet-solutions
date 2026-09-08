@@ -7,7 +7,6 @@ use App\Services\Breachsense;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Exceptions;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Sleep;
 
 uses(RefreshDatabase::class);
@@ -22,27 +21,31 @@ beforeEach(function (): void {
     Sleep::fake(syncWithCarbon: true);
 });
 
-it('queues only the verified account email and deduplicates repeated submissions', function (): void {
-    Queue::fake([CheckEmailExposure::class]);
+it('shows the verified account email result immediately and deduplicates repeated submissions', function (): void {
     Http::preventStrayRequests();
+    Http::fake(['https://api.breachsense.com/creds*' => Http::response(['cnt' => 3])]);
     $user = User::factory()->create(['email' => 'ana@company.com']);
-    $this->actingAs($user)->post(route('security.email.store'), ['consent' => 1, 'email' => 'victim@another.com', 'user_id' => 999])->assertRedirect(route('security.dashboard'));
+
+    $this->actingAs($user)->post(route('security.email.store'), ['consent' => 1, 'email' => 'victim@another.com', 'user_id' => 999])
+        ->assertRedirect(route('security.dashboard'))
+        ->assertSessionHas('status', 'Consulta completada. Tu resultado ya está disponible.');
     $this->post(route('security.email.store'), ['consent' => 1])->assertRedirect();
     $scan = EmailScan::sole();
+
     expect($scan->email)->toBe('ana@company.com');
     expect($scan->user_id)->toBe($user->id);
-    Queue::assertPushed(CheckEmailExposure::class, fn ($job) => $job->scanId === $scan->id);
-    Queue::assertPushed(CheckEmailExposure::class, 1);
-    Http::assertNothingSent();
+    expect($scan->status)->toBe(EmailScan::Completed);
+    expect($scan->exposure_count)->toBe(3);
+    Http::assertSentCount(1);
 });
 
-it('requires lookup consent and a configured service before dispatch', function (): void {
-    Queue::fake();
+it('requires lookup consent and a configured service before checking exposure', function (): void {
+    Http::preventStrayRequests();
     $this->actingAs(User::factory()->create())->post(route('security.email.store'))->assertSessionHasErrors('consent');
     config(['services.breachsense.enabled' => false]);
     $this->post(route('security.email.store'), ['consent' => 1])->assertSessionHasErrors('scan');
     $this->assertDatabaseCount('email_scans', 0);
-    Queue::assertNothingPushed();
+    Http::assertNothingSent();
 });
 
 it('stores a validated exposure count and renders a masked result', function (mixed $payload, int $expected): void {
@@ -56,7 +59,12 @@ it('stores a validated exposure count and renders a masked result', function (mi
     expect($scan->exposure_count)->toBe($expected);
     Http::assertSentCount(1);
     Http::assertSent(fn ($request) => $request->hasHeader('lic', 'test-license') && $request['s'] === 'ana@company.com' && $request['count'] === 1 && ! str_contains($request->url(), 'test-license'));
-    $this->actingAs($scan->user)->get(route('security.dashboard'))->assertOk()->assertSee('a***@company.com')->assertSee('Solicitar más información')->assertHeader('X-Robots-Tag', 'noindex, nofollow');
+    $this->actingAs($scan->user)->get(route('security.dashboard'))->assertOk()
+        ->assertSee('a***@company.com')
+        ->assertSee('Detalle protegido')
+        ->assertSee('Solicitar informe completo')
+        ->assertDontSee($expected.' registros asociados')
+        ->assertHeader('X-Robots-Tag', 'noindex, nofollow');
 })->with([
     'scalar' => ['3', 3], 'zero' => ['0', 0], 'count object' => [['cnt' => 2], 2], 'count list' => [[['cnt' => 1]], 1],
 ]);
@@ -146,21 +154,24 @@ it('records a details request once and exposes it to staff for followup', functi
     expect($scan->refresh()->followup_completed_at)->not->toBeNull();
 });
 
-it('allows retry of failed lookups but never reruns completed free checks', function (): void {
-    Queue::fake([CheckEmailExposure::class]);
+it('retries failed lookups immediately but never reruns completed free checks', function (): void {
+    Http::preventStrayRequests();
+    Http::fake(['https://api.breachsense.com/creds*' => Http::response(['cnt' => 1])]);
     $scan = EmailScan::factory()->create(['status' => EmailScan::Failed]);
+
     $this->actingAs($scan->user)->post(route('security.email.store'), ['consent' => 1])->assertRedirect();
-    expect($scan->refresh()->status)->toBe(EmailScan::Queued);
-    Queue::assertPushed(CheckEmailExposure::class, 1);
-    $scan->forceFill(['status' => EmailScan::Completed, 'exposure_count' => 1, 'checked_at' => now()])->save();
+    expect($scan->refresh()->status)->toBe(EmailScan::Completed);
     $this->post(route('security.email.store'), ['consent' => 1])->assertRedirect();
-    Queue::assertPushed(CheckEmailExposure::class, 1);
+    Http::assertSentCount(1);
 });
 
-it('makes a queue dispatch failure visible and retryable', function (): void {
+it('makes an immediate provider failure visible and retryable', function (): void {
     Exceptions::fake();
-    Queue::shouldReceive('connection')->andThrow(new RuntimeException('Queue unavailable'));
+    Http::preventStrayRequests();
+    Http::fake(['https://api.breachsense.com/creds*' => Http::response([], 500)]);
+
     $this->actingAs(User::factory()->create())->post(route('security.email.store'), ['consent' => 1])->assertSessionHasErrors('scan');
+
     expect(EmailScan::sole()->status)->toBe(EmailScan::Failed);
     Exceptions::assertReported(RuntimeException::class);
 });

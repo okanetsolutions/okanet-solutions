@@ -40,9 +40,9 @@
         <div class="account-columns">
             <article class="account-panel">
                 <h3>¿Tu correo aparece en una filtración?</h3>
-                <p>Crea tu cuenta con un correo corporativo y verifícalo. Consulta cuántos registros de exposición encontramos y solicita más información para conocer los siguientes pasos.</p>
+                <p>Crea tu cuenta con un correo corporativo y verifícalo. Recibe el resultado general al momento y contacta con nuestro equipo para obtener el informe completo.</p>
                 <a class="button" href="{{ auth()->check() ? route('security.dashboard') : route('register') }}">Consultar mi correo</a>
-                <p class="account-help">Consulta de filtraciones de credenciales con Breachsense. No mostramos contraseñas ni datos sensibles. Sujeto a disponibilidad del servicio.</p>
+                <p class="account-help">Consulta de filtraciones de credenciales con Breachsense. El detalle se mantiene protegido y no mostramos contraseñas ni datos sensibles. Sujeto a disponibilidad del servicio.</p>
             </article>
             <article class="account-panel">
                 <h3>Una primera evaluación de tu dominio.</h3>
