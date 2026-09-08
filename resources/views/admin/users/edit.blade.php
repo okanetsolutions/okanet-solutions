@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="mx-auto max-w-2xl">
-        <a href="{{ route('admin.users.index') }}" class="font-mono text-xs text-greige transition-colors hover:text-espresso">← Volver a usuarios</a>
+        <a href="{{ route('admin.users.index') }}" class="font-mono text-xs text-greige transition-colors hover:text-espresso" wire:navigate>← Volver a usuarios</a>
 
         <div class="mt-8 border-b border-espresso/15 pb-6">
             <h1 class="font-display text-3xl font-medium tracking-tight">Editar usuario</h1>
@@ -58,7 +58,7 @@
 
             <div class="flex flex-wrap items-center gap-5 border-t border-espresso/15 pt-7">
                 <button type="submit" class="pressable bg-espresso px-7 py-3 font-medium text-bone hover:bg-terracotta">Guardar cambios</button>
-                <a href="{{ route('admin.users.index') }}" class="text-sm text-greige transition-colors hover:text-espresso">Cancelar</a>
+                <a href="{{ route('admin.users.index') }}" class="text-sm text-greige transition-colors hover:text-espresso" wire:navigate>Cancelar</a>
             </div>
         </form>
     </div>

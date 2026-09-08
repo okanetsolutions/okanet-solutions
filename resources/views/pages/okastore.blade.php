@@ -5,12 +5,12 @@
     <section class="product-hero">
         <div class="site-width product-hero-grid">
             <div>
-                <a href="{{ route('products') }}" class="breadcrumb">Productos / OkaStore</a>
+                <a href="{{ route('products') }}" class="breadcrumb" wire:navigate>Productos / OkaStore</a>
                 <h1>Más cerca de tus clientes.<br>
                     <span>Al día con tu negocio.</span>
                 </h1>
                 <p class="page-lead">Tu tienda en línea, pedidos, inventario y contabilidad en una plataforma pensada para el comercio venezolano.</p>
-                <a class="button" href="{{ route('contact', ['interest' => 'OkaStore']) }}">Conversemos sobre OkaStore <span aria-hidden="true">↗</span>
+                <a class="button" href="{{ route('contact', ['interest' => 'OkaStore']) }}" wire:navigate>Conversemos sobre OkaStore <span aria-hidden="true">↗</span>
                 </a>
             </div>
             @include('partials.product-preview', ['product' => 'OkaStore'])</div>
@@ -45,7 +45,7 @@
             <div>
                 <p>Empezamos por tu catálogo, tu inventario y tu proceso de venta. Revisamos la configuración, los datos iniciales y las integraciones necesarias antes de ponerla en marcha.</p>
                 <p>El alcance, el costo y las condiciones de soporte se acuerdan en la propuesta. Las interfaces mostradas son ilustrativas.</p>
-                <a class="text-link" href="{{ route('contact', ['interest' => 'OkaStore']) }}">Cuéntanos sobre tu comercio <span aria-hidden="true">↗</span>
+                <a class="text-link" href="{{ route('contact', ['interest' => 'OkaStore']) }}" wire:navigate>Cuéntanos sobre tu comercio <span aria-hidden="true">↗</span>
                 </a>
             </div>
         </div>

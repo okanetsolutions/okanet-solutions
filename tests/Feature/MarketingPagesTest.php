@@ -1,7 +1,9 @@
 <?php
 
 it('renders a dedicated public page with shared navigation and legal links', function (string $route, string $heading): void {
-    $this->get(route($route))
+    $response = $this->get(route($route));
+
+    $response
         ->assertOk()
         ->assertSee($heading)
         ->assertSee(route('products'))
@@ -11,6 +13,24 @@ it('renders a dedicated public page with shared navigation and legal links', fun
         ->assertSee(route('cookies'))
         ->assertDontSee('fonts.bunny.net')
         ->assertDontSee('<iframe', false);
+
+    $document = new DOMDocument;
+    @$document->loadHTML($response->getContent());
+    $linksWithoutSpaNavigation = [];
+
+    foreach ($document->getElementsByTagName('a') as $link) {
+        $href = $link->getAttribute('href');
+        $isInternalPageLink = str_starts_with($href, url('/'))
+            && ! $link->hasAttribute('target')
+            && ! $link->hasAttribute('download')
+            && ! $link->hasAttribute('data-cookie-settings');
+
+        if ($isInternalPageLink && ! $link->hasAttribute('wire:navigate')) {
+            $linksWithoutSpaNavigation[] = $href;
+        }
+    }
+
+    expect($linksWithoutSpaNavigation)->toBeEmpty();
 })->with([
     ['products', 'El software adecuado'],
     ['products.okaisp', 'Tu red crece.'],

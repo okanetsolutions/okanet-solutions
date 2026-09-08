@@ -11,9 +11,9 @@
                 </h1>
                 <p class="hero-description">Conectamos tu operación, construimos las herramientas que faltan y te ayudamos a proteger lo que has creado.</p>
                 <div class="button-row">
-                    <a href="{{ route('contact') }}" class="button">Cuéntanos tu proyecto <span aria-hidden="true">↗</span>
+                    <a href="{{ route('contact') }}" class="button" wire:navigate>Cuéntanos tu proyecto <span aria-hidden="true">↗</span>
                     </a>
-                    <a href="{{ route('products') }}" class="text-link">Explorar productos <span aria-hidden="true">→</span>
+                    <a href="{{ route('products') }}" class="text-link" wire:navigate>Explorar productos <span aria-hidden="true">→</span>
                     </a>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     <span>Hecho para tu día a día</span>
                     <span aria-hidden="true">↘</span>
                 </div>
-                @include('partials.product-preview', ['product' => 'OkaISP'])<a href="{{ route('products.okaisp') }}" class="hero-product-link">
+                @include('partials.product-preview', ['product' => 'OkaISP'])<a href="{{ route('products.okaisp') }}" class="hero-product-link" wire:navigate>
                     <span>Conoce OkaISP <small>Software para proveedores de internet</small>
                     </span>
                     <span aria-hidden="true">↗</span>
@@ -59,7 +59,7 @@
                     <span>Red y soporte</span>
                     <span>Automatización con IA</span>
                 </div>
-                <a href="{{ route('products.okaisp') }}" class="offering-link">Explorar OkaISP <span aria-hidden="true">↗</span>
+                <a href="{{ route('products.okaisp') }}" class="offering-link" wire:navigate>Explorar OkaISP <span aria-hidden="true">↗</span>
                 </a>
             </article>
             <article id="okastore" class="product-offering store-offering">
@@ -74,7 +74,7 @@
                     <span>Inventario</span>
                     <span>Contabilidad</span>
                 </div>
-                <a href="{{ route('products.okastore') }}" class="offering-link">Explorar OkaStore <span aria-hidden="true">↗</span>
+                <a href="{{ route('products.okastore') }}" class="offering-link" wire:navigate>Explorar OkaStore <span aria-hidden="true">↗</span>
                 </a>
             </article>
         </div>
@@ -88,7 +88,7 @@
                     <span>Protegemos.</span>
                 </h2>
                 <p class="expertise-description">Cuando tu negocio necesita algo propio, trabajamos contigo para convertir un problema operativo en una solución concreta.</p>
-                <a href="{{ route('about') }}" class="text-link">Así trabajamos <span aria-hidden="true">↗</span>
+                <a href="{{ route('about') }}" class="text-link" wire:navigate>Así trabajamos <span aria-hidden="true">↗</span>
                 </a>
             </div>
             <div class="expertise-services">
@@ -98,7 +98,7 @@
                         <span aria-hidden="true">↗</span>
                     </div>
                     <p>Aplicaciones, integraciones y automatización para los procesos que hacen único a tu negocio.</p>
-                    <a href="{{ route('development') }}" class="text-link">Conoce el servicio</a>
+                    <a href="{{ route('development') }}" class="text-link" wire:navigate>Conoce el servicio</a>
                 </article>
                 <article id="seguridad">
                     <div class="service-title">
@@ -106,7 +106,7 @@
                         <span aria-hidden="true">↗</span>
                     </div>
                     <p>Protección de ciberseguridad y pruebas de penetración con hallazgos claros y prioridades de corrección.</p>
-                    <a href="{{ route('security') }}" class="text-link">Conoce el servicio</a>
+                    <a href="{{ route('security') }}" class="text-link" wire:navigate>Conoce el servicio</a>
                 </article>
             </div>
         </div>
@@ -133,7 +133,7 @@
         </ol>
         <div id="okanet" class="company-note">
             <h3>Desde Caracas.<br>Con contexto local.</h3>
-            <p>Somos Okanet Solutions C.A. Desde 2019, desarrollamos software con atención a cómo trabajan las empresas en Venezuela. <a class="text-link" href="{{ route('about') }}">Conoce al equipo detrás <span aria-hidden="true">↗</span>
+            <p>Somos Okanet Solutions C.A. Desde 2019, desarrollamos software con atención a cómo trabajan las empresas en Venezuela. <a class="text-link" href="{{ route('about') }}" wire:navigate>Conoce al equipo detrás <span aria-hidden="true">↗</span>
                 </a>
             </p>
         </div>
@@ -143,7 +143,7 @@
             <h2>Tu próximo paso empieza con una conversación.</h2>
             <p>Un producto, un proceso o una pregunta de seguridad. Cuéntanos qué necesitas resolver.</p>
         </div>
-        <a class="button" href="{{ route('contact') }}">Hablemos <span aria-hidden="true">↗</span>
+        <a class="button" href="{{ route('contact') }}" wire:navigate>Hablemos <span aria-hidden="true">↗</span>
         </a>
     </section>
 @endsection

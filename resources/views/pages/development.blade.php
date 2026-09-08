@@ -8,7 +8,7 @@
             <span>Tu software también puede serlo.</span>
         </h1>
         <p class="page-lead">Conectamos lo que ya funciona y construimos lo que falta. Software pensado alrededor de las personas que lo van a utilizar.</p>
-        <a class="button" href="{{ route('contact', ['interest' => 'Sistema a medida']) }}">Cuéntanos qué necesitas resolver <span aria-hidden="true">↗</span>
+        <a class="button" href="{{ route('contact', ['interest' => 'Sistema a medida']) }}" wire:navigate>Cuéntanos qué necesitas resolver <span aria-hidden="true">↗</span>
         </a>
     </section>
     <section class="tinted-section">

@@ -4,11 +4,11 @@
     <section class="site-width security-account @yield('account-class')">
         @auth
             <nav class="account-nav" aria-label="Navegación de cuenta">
-                <a href="{{ route('security.dashboard') }}">Mi seguridad</a>
+                <a href="{{ route('security.dashboard') }}" wire:navigate>Mi seguridad</a>
                 @can('staff')
-                    <a href="{{ route('admin.assessments.index') }}">Evaluaciones y solicitudes</a>
-                    <a href="{{ route('admin.users.index') }}">Usuarios</a>
-                    <a href="{{ route('admin.posts.index') }}">Blog</a>
+                    <a href="{{ route('admin.assessments.index') }}" wire:navigate>Evaluaciones y solicitudes</a>
+                    <a href="{{ route('admin.users.index') }}" wire:navigate>Usuarios</a>
+                    <a href="{{ route('admin.posts.index') }}" wire:navigate>Blog</a>
                 @endcan
                 <form method="post" action="{{ route('logout') }}">@csrf<button class="text-link" type="submit">Cerrar sesión</button></form>
             </nav>

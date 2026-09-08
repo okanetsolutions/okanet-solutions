@@ -12,21 +12,22 @@
         <link rel="apple-touch-icon" href="{{ asset('images/okanet-icon-180.png') }}">
         @yield('robots')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <body class="bg-paper text-espresso antialiased font-sans selection:bg-signal selection:text-ink">
         <a href="#contenido" class="skip-link">Saltar al contenido</a>
         <header class="site-header">
             <div class="site-width header-inner">
-                <a href="{{ route('home') }}" class="wordmark" aria-label="Okanet Solutions, inicio">
+                <a href="{{ route('home') }}" class="wordmark" aria-label="Okanet Solutions, inicio" wire:navigate>
                     <img src="{{ asset('images/okanet-logo.png') }}" alt="" width="534" height="108" fetchpriority="high" decoding="async">
                 </a>
                 <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-menu" hidden>Menú <span aria-hidden="true">☰</span>
                 </button>
                 <nav id="site-menu" class="site-menu" aria-label="Navegación principal">
                     @foreach (['products' => 'Productos', 'development' => 'A medida', 'security' => 'Ciberseguridad', 'about' => 'Nosotros', 'blog.index' => 'Blog'] as $name => $label)
-                        <a href="{{ route($name) }}" @if(request()->routeIs($name, $name === 'products' ? 'products.*' : ($name === 'blog.index' ? 'blog.*' : $name))) aria-current="page" @endif>{{ $label }}</a>
+                        <a href="{{ route($name) }}" wire:navigate @if(request()->routeIs($name, $name === 'products' ? 'products.*' : ($name === 'blog.index' ? 'blog.*' : $name))) aria-current="page" @endif>{{ $label }}</a>
                     @endforeach
-                    <a href="{{ route('contact') }}" class="button button-small">Hablemos <span aria-hidden="true">↗</span>
+                    <a href="{{ route('contact') }}" class="button button-small" wire:navigate>Hablemos <span aria-hidden="true">↗</span>
                     </a>
                 </nav>
             </div>
@@ -36,7 +37,7 @@
             <div class="site-width">
                 <div class="footer-grid">
                     <div class="footer-brand">
-                        <a href="{{ route('home') }}" class="wordmark">
+                        <a href="{{ route('home') }}" class="wordmark" wire:navigate>
                             <img src="{{ asset('images/okanet-logo-light.png') }}" alt="Okanet Solutions" width="534" height="108" loading="lazy" decoding="async">
                         </a>
                         <p>Tecnología con criterio.<br>Desde Caracas, desde 2019.</p>
@@ -44,16 +45,16 @@
                     </div>
                     <nav aria-label="Soluciones">
                         <h2>Soluciones</h2>
-                        <a href="{{ route('products.okaisp') }}">OkaISP</a>
-                        <a href="{{ route('products.okastore') }}">OkaStore</a>
-                        <a href="{{ route('development') }}">Desarrollo a medida</a>
-                        <a href="{{ route('security') }}">Ciberseguridad</a>
+                        <a href="{{ route('products.okaisp') }}" wire:navigate>OkaISP</a>
+                        <a href="{{ route('products.okastore') }}" wire:navigate>OkaStore</a>
+                        <a href="{{ route('development') }}" wire:navigate>Desarrollo a medida</a>
+                        <a href="{{ route('security') }}" wire:navigate>Ciberseguridad</a>
                     </nav>
                     <nav aria-label="Empresa">
                         <h2>Conócenos</h2>
-                        <a href="{{ route('about') }}">Nosotros</a>
-                        <a href="{{ route('blog.index') }}">Blog</a>
-                        <a href="{{ route('contact') }}">Contacto</a>
+                        <a href="{{ route('about') }}" wire:navigate>Nosotros</a>
+                        <a href="{{ route('blog.index') }}" wire:navigate>Blog</a>
+                        <a href="{{ route('contact') }}" wire:navigate>Contacto</a>
                         <a href="mailto:info@okanetsolutions.com" class="break-all">info@okanetsolutions.com</a>
                         <a href="tel:+584241780659">+58 424 178 0659</a>
                     </nav>
@@ -65,8 +66,8 @@
                 <div class="footer-bottom">
                     <p>© {{ date('Y') }} Okanet Solutions C.A.</p>
                     <nav aria-label="Información legal">
-                        <a href="{{ route('privacy') }}">Privacidad</a>
-                        <a href="{{ route('terms') }}">Términos y condiciones</a>
+                        <a href="{{ route('privacy') }}" wire:navigate>Privacidad</a>
+                        <a href="{{ route('terms') }}" wire:navigate>Términos y condiciones</a>
                         <a href="{{ route('cookies') }}" data-cookie-settings>Cookies y preferencias</a>
                     </nav>
                 </div>
@@ -96,11 +97,12 @@
                 </div>
             </dl>
             <p>No hay cookies opcionales que aceptar o rechazar en esta aplicación. No guardamos esta interacción. Los canales externos de contacto, como WhatsApp, solo se abren cuando eliges visitarlos. El tratamiento por DigitalOcean NYC1, Cloudflare (proxy y R2) y Postmark se explica en nuestras políticas.</p>
-            <a class="text-link" href="{{ route('cookies') }}">Leer la política de cookies <span aria-hidden="true">↗</span>
+            <a class="text-link" href="{{ route('cookies') }}" wire:navigate>Leer la política de cookies <span aria-hidden="true">↗</span>
             </a>
             <form method="dialog">
                 <button class="button">Entendido</button>
             </form>
         </dialog>
+        @livewireScripts
     </body>
 </html>

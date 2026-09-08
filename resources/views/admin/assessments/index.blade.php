@@ -5,7 +5,7 @@
     <section class="account-section">
         <h2>Evaluaciones autorizadas</h2>
         @forelse($assessments as $assessment)
-            <a class="account-row" href="{{ route('admin.assessments.show', $assessment) }}">
+            <a class="account-row" href="{{ route('admin.assessments.show', $assessment) }}" wire:navigate>
                 <span><strong>{{ $assessment->domain }}</strong><small>{{ $assessment->user->email }}</small></span>
                 <span>{{ $assessment->statusLabel() }}</span>
                 <span>Límite: {{ $assessment->due_at->format('d/m/Y H:i') }} @if($assessment->due_at->isPast() && $assessment->status !== \App\Models\SecurityAssessment::Delivered)<strong> · Plazo vencido</strong>@endif</span>
@@ -27,7 +27,7 @@
     <section class="account-section">
         <h2>Solicitudes de informe completo</h2>
         @forelse($reportRequests as $assessment)
-            <div class="account-row"><a class="text-link" href="{{ route('admin.assessments.show', $assessment) }}">{{ $assessment->domain }}</a><span>{{ $assessment->user->email }}</span><form method="post" action="{{ route('admin.assessments.followup', $assessment) }}">@csrf<button class="button button-small" type="submit">Marcar atendida</button></form></div>
+            <div class="account-row"><a class="text-link" href="{{ route('admin.assessments.show', $assessment) }}" wire:navigate>{{ $assessment->domain }}</a><span>{{ $assessment->user->email }}</span><form method="post" action="{{ route('admin.assessments.followup', $assessment) }}">@csrf<button class="button button-small" type="submit">Marcar atendida</button></form></div>
         @empty
             <p>No hay solicitudes de informe completo pendientes.</p>
         @endforelse

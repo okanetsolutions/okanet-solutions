@@ -5,12 +5,12 @@
     <section class="product-hero">
         <div class="site-width product-hero-grid">
             <div>
-                <a href="{{ route('products') }}" class="breadcrumb">Productos / OkaISP</a>
+                <a href="{{ route('products') }}" class="breadcrumb" wire:navigate>Productos / OkaISP</a>
                 <h1>Tu red crece.<br>
                     <span>Tu operación se conecta.</span>
                 </h1>
                 <p class="page-lead">El ERP con IA para proveedores de internet que reúne clientes, facturación, cobranza, soporte y monitoreo de red.</p>
-                <a class="button" href="{{ route('contact', ['interest' => 'OkaISP']) }}">Conversemos sobre OkaISP <span aria-hidden="true">↗</span>
+                <a class="button" href="{{ route('contact', ['interest' => 'OkaISP']) }}" wire:navigate>Conversemos sobre OkaISP <span aria-hidden="true">↗</span>
                 </a>
             </div>
             @include('partials.product-preview', ['product' => 'OkaISP'])</div>
@@ -45,7 +45,7 @@
             <div>
                 <p>Revisamos los sistemas que utilizas, los datos que necesitas migrar y los procesos de tu equipo. Definimos juntos el alcance, las integraciones y la puesta en marcha.</p>
                 <p>Las funciones, condiciones de soporte y costos aplicables se concretan en la propuesta. Las interfaces mostradas son ilustrativas.</p>
-                <a class="text-link" href="{{ route('contact', ['interest' => 'OkaISP']) }}">Hablar con el equipo <span aria-hidden="true">↗</span>
+                <a class="text-link" href="{{ route('contact', ['interest' => 'OkaISP']) }}" wire:navigate>Hablar con el equipo <span aria-hidden="true">↗</span>
                 </a>
             </div>
         </div>

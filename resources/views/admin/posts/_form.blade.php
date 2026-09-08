@@ -47,6 +47,6 @@
             {{ $submitLabel }}
             <span class="font-mono text-xs group-hover:translate-x-1 transition-transform">→</span>
         </button>
-        <a href="{{ route('admin.posts.index') }}" class="text-greige hover:text-espresso font-mono text-xs transition-colors">Cancelar</a>
+        <a href="{{ route('admin.posts.index') }}" class="text-greige hover:text-espresso font-mono text-xs transition-colors" wire:navigate>Cancelar</a>
     </div>
 </div>

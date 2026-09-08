@@ -18,7 +18,7 @@
                 <li>Facturación y cobranza</li>
                 <li>Monitoreo y soporte con IA</li>
             </ul>
-            <a class="button" href="{{ route('products.okaisp') }}">Descubrir OkaISP <span aria-hidden="true">↗</span>
+            <a class="button" href="{{ route('products.okaisp') }}" wire:navigate>Descubrir OkaISP <span aria-hidden="true">↗</span>
             </a>
         </div>
         @include('partials.product-preview', ['product' => 'OkaISP'])</section>
@@ -32,7 +32,7 @@
                 <li>Pedidos, pagos e inventario</li>
                 <li>Contabilidad para Venezuela</li>
             </ul>
-            <a class="button" href="{{ route('products.okastore') }}">Descubrir OkaStore <span aria-hidden="true">↗</span>
+            <a class="button" href="{{ route('products.okastore') }}" wire:navigate>Descubrir OkaStore <span aria-hidden="true">↗</span>
             </a>
         </div>
         @include('partials.product-preview', ['product' => 'OkaStore'])</section>
@@ -41,7 +41,7 @@
             <h2>¿Tu operación necesita algo diferente?</h2>
             <p>También desarrollamos aplicaciones e integraciones a medida.</p>
         </div>
-        <a class="text-link" href="{{ route('development') }}">Explorar desarrollo a medida <span aria-hidden="true">↗</span>
+        <a class="text-link" href="{{ route('development') }}" wire:navigate>Explorar desarrollo a medida <span aria-hidden="true">↗</span>
         </a>
     </section>
     @include('partials.cta')
