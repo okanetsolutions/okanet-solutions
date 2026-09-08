@@ -47,6 +47,17 @@
     --color-amber: oklch(0.79 0.135 73);         /* "attention / now"       */
     --color-mint: oklch(0.78 0.1 178);           /* settled / done          */
 
+    /* Semantic feedback on light account surfaces. */
+    --color-success-ink: oklch(0.39 0.11 151);
+    --color-success-surface: oklch(0.965 0.025 151);
+    --color-success-border: oklch(0.73 0.08 151);
+    --color-error-ink: oklch(0.4 0.14 25);
+    --color-error-surface: oklch(0.965 0.025 25);
+    --color-error-border: oklch(0.74 0.08 25);
+    --color-warning-ink: oklch(0.38 0.095 65);
+    --color-warning-surface: oklch(0.965 0.04 78);
+    --color-warning-border: oklch(0.75 0.105 73);
+
     /* Backward-compatible aliases so blog/admin/auth re-skin coherently.
        These views render on LIGHT surfaces, so the accent maps to the
        light-safe deep azure (AA on paper), not the bright on-dark signal. */
@@ -677,9 +688,19 @@
 .account-check a, .account-help a { text-decoration: underline; text-underline-offset: 3px; }
 .account-form .button { justify-self: start; }
 .security-account .account-help { font-size: .875rem; color: var(--color-umber); margin-block: .5rem; }
-.account-notice { padding: 1rem 1.25rem; color: var(--color-emerald-deep); background: color-mix(in oklch, var(--color-emerald-deep) 10%, var(--color-surface)); border: 1px solid color-mix(in oklch, var(--color-emerald-deep) 32%, var(--color-surface)); border-radius: 4px; overflow-wrap: anywhere; }
-.account-error { color: oklch(.38 .14 25); background: color-mix(in oklch, oklch(.38 .14 25) 8%, var(--color-surface)); border-color: color-mix(in oklch, oklch(.38 .14 25) 35%, var(--color-surface)); }
-.account-error ul { list-style: disc; padding-left: 1.25rem; }
+.account-notice { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); align-items: start; gap: .75rem; padding: 1rem 1.125rem; border: 1px solid; border-radius: 6px; overflow-wrap: anywhere; }
+.account-notice::before { display: grid; place-items: center; width: 1.25rem; height: 1.25rem; margin-top: .15rem; border: 1px solid currentColor; border-radius: 50%; font-size: .75rem; font-weight: 800; line-height: 1; }
+.account-notice > * { grid-column: 2; min-width: 0; }
+.security-account .account-notice { margin-block: 1.25rem; }
+.security-account > .account-notice { margin-block: 0 clamp(2rem, 4vw, 3rem); }
+.security-account .account-notice p { max-width: none; margin: 0; }
+.account-success { color: var(--color-success-ink); background: var(--color-success-surface); border-color: var(--color-success-border); }
+.account-success::before { content: '✓'; }
+.account-error { color: var(--color-error-ink); background: var(--color-error-surface); border-color: var(--color-error-border); }
+.account-error::before { content: '×'; }
+.account-error ul { list-style: disc; padding-left: 1.25rem; margin-top: .4rem; }
+.account-warning { color: var(--color-warning-ink); background: var(--color-warning-surface); border-color: var(--color-warning-border); }
+.account-warning::before { content: '!'; }
 .account-verify-page > .account-notice { max-width: 42rem; margin: 0 auto clamp(2rem, 4vw, 3rem); }
 .account-result { font-size: 1.25rem; font-weight: 600; }
 .account-report-preview { position: relative; margin-block: 1.5rem; padding-block: 1.25rem; border-block: 1px solid var(--color-fog); overflow: hidden; }

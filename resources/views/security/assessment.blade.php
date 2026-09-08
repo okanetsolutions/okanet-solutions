@@ -18,7 +18,7 @@
                     <p>Este código ha vencido. Genera uno nuevo y reemplaza el valor del registro.</p>
                     <form method="post" action="{{ route('security.assessments.renew', $assessment) }}">@csrf<button class="button" type="submit">Generar nuevo código</button></form>
                 @else
-                    @if($assessment->dns_verified_at)<p class="account-notice">Registro DNS verificado. Consérvalo hasta completar la autorización.</p>@endif
+                    @if($assessment->dns_verified_at)<p class="account-notice account-success">Registro DNS verificado. Consérvalo hasta completar la autorización.</p>@endif
                     <form method="post" action="{{ route('security.assessments.verify', $assessment) }}">@csrf<button class="button" type="submit">Comprobar registro DNS</button></form>
                     <p class="account-help">La propagación puede tardar. Puedes volver a comprobarlo sin cambiar el código.</p>
                 @endif
@@ -34,7 +34,7 @@
                         <button class="button" type="submit">Autorizar y solicitar evaluación</button>
                     </form>
                 @else
-                    <p class="account-notice">Primero completa la verificación DNS para habilitar la autorización.</p>
+                    <p class="account-notice account-warning">Primero completa la verificación DNS para habilitar la autorización.</p>
                 @endif
             </section>
         </div>
@@ -47,7 +47,7 @@
                 <a class="button" href="{{ route('security.assessments.download', $assessment) }}">Descargar informe PDF</a>
                 <p>El informe refleja únicamente el alcance y el momento de la evaluación.</p>
                 @if($assessment->full_report_requested_at)
-                    <p class="account-notice">Recibimos tu solicitud del informe completo. Te contactaremos por correo.</p>
+                    <p class="account-notice account-success">Recibimos tu solicitud del informe completo. Te contactaremos por correo.</p>
                 @else
                     <form method="post" action="{{ route('security.assessments.full-report', $assessment) }}">@csrf<button class="button" type="submit">Solicitar informe completo</button></form>
                     <p class="account-help">Te contactaremos para conversar sobre los hallazgos, las correcciones y nuestros servicios de ciberseguridad.</p>
