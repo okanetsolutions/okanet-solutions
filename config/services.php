@@ -6,6 +6,10 @@ return [
         'enabled' => env('BREACHSENSE_ENABLED', false),
         'key' => env('BREACHSENSE_API_KEY'),
         'monthly_query_limit' => (int) env('BREACHSENSE_MONTHLY_QUERY_LIMIT', 100),
+        'endpoints' => array_values(array_filter(array_map(
+            trim(...),
+            explode(',', (string) env('BREACHSENSE_ENDPOINTS', 'creds,stealer,combo,sessions,nhi,phish')),
+        ))),
     ],
 
     /*
