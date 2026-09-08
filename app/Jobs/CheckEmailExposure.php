@@ -15,7 +15,7 @@ class CheckEmailExposure implements ShouldQueue
 {
     use Queueable;
 
-    public int $timeout = 30;
+    public int $timeout = 180;
 
     public int $maxExceptions = 3;
 

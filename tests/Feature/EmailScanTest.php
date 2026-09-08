@@ -8,11 +8,18 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Exceptions;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Sleep;
 
 uses(RefreshDatabase::class);
 
 beforeEach(function (): void {
-    config(['services.breachsense.enabled' => true, 'services.breachsense.key' => 'test-license', 'services.breachsense.monthly_query_limit' => 10]);
+    config([
+        'services.breachsense.enabled' => true,
+        'services.breachsense.key' => 'test-license',
+        'services.breachsense.monthly_query_limit' => 10,
+        'services.breachsense.endpoints' => ['creds'],
+    ]);
+    Sleep::fake(syncWithCarbon: true);
 });
 
 it('queues only the verified account email and deduplicates repeated submissions', function (): void {
@@ -53,6 +60,38 @@ it('stores a validated exposure count and renders a masked result', function (mi
 })->with([
     'scalar' => ['3', 3], 'zero' => ['0', 0], 'count object' => [['cnt' => 2], 2], 'count list' => [[['cnt' => 1]], 1],
 ]);
+
+it('combines counts from the configured credential exposure endpoints', function (): void {
+    config(['services.breachsense.endpoints' => ['creds', 'stealer', 'combo']]);
+    $counts = ['creds' => 1, 'stealer' => 2, 'combo' => 3];
+    Http::preventStrayRequests();
+    Http::fake(function ($request) use ($counts) {
+        $endpoint = basename(parse_url($request->url(), PHP_URL_PATH));
+
+        return Http::response(['cnt' => $counts[$endpoint]]);
+    });
+    $scan = EmailScan::factory()->for(User::factory()->create(['email' => 'ana@company.com']))->create();
+
+    (new CheckEmailExposure($scan->id))->handle(app(Breachsense::class));
+
+    expect($scan->refresh()->exposure_count)->toBe(6);
+    Http::assertSentCount(3);
+    foreach (array_keys($counts) as $endpoint) {
+        Http::assertSent(fn ($request) => $request->url() === 'https://api.breachsense.com/'.$endpoint.'?s=ana%40company.com&count=1'
+            && $request->hasHeader('lic', 'test-license'));
+    }
+    Sleep::assertSleptTimes(2);
+});
+
+it('rejects unsupported configured endpoints before sending data', function (): void {
+    config(['services.breachsense.endpoints' => ['creds', 'account']]);
+    Http::preventStrayRequests();
+
+    expect(fn () => app(Breachsense::class)->exposureCount('ana@company.com'))
+        ->toThrow(RuntimeException::class, 'unsupported email endpoint');
+
+    Http::assertNothingSent();
+});
 
 it('never treats malformed partial or failed provider results as a clean scan', function (mixed $body, int $status): void {
     Http::preventStrayRequests();
