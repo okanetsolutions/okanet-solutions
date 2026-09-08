@@ -12,8 +12,7 @@
     <section class="company-story">
         <div class="site-width story-grid">
             <div class="company-stamp">
-                <span class="wordmark">
-                    <span class="brand-symbol" aria-hidden="true"></span>okanet</span>
+                <span class="brand-lockup" role="img" aria-label="Okanet"></span>
                 <p>Caracas<br>Venezuela</p>
                 <span>Construyendo desde 2019</span>
             </div>

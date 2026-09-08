@@ -146,3 +146,22 @@ it('distinguishes provider retention and data location from the approved local p
         ->assertSee('eliminación de objetos de R2 mediante reglas de ciclo de vida es asíncrona')
         ->assertSee('normalmente ocurre dentro de las 24 horas siguientes');
 });
+
+it('renders the brand lockup artwork in the header, the footer and the browser icons', function (): void {
+    $this->get(route('home'))
+        ->assertSee(asset('images/okanet-logo.png'), false)
+        ->assertSee(asset('images/okanet-logo-light.png'), false)
+        ->assertSee(asset('images/okanet-icon-180.png'), false)
+        ->assertSee('rel="icon"', false);
+});
+
+it('ships every brand asset the layouts reference', function (string $path): void {
+    expect(public_path($path))->toBeReadableFile()
+        ->and(filesize(public_path($path)))->toBeGreaterThan(0);
+})->with([
+    'favicon.ico',
+    'images/okanet-logo.png',
+    'images/okanet-logo-light.png',
+    'images/okanet-mark.png',
+    'images/okanet-icon-180.png',
+]);

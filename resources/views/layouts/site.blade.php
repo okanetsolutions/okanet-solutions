@@ -8,6 +8,8 @@
         <title>@yield('title', 'Okanet Solutions — Software y ciberseguridad desde Caracas')</title>
         <meta name="description" content="@yield('description', 'Software para proveedores de internet y comercios, desarrollo a medida y ciberseguridad. Okanet Solutions, desde Caracas, Venezuela.')">
         <link rel="canonical" href="{{ url()->current() }}">
+        <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="16x16 32x32 48x48">
+        <link rel="apple-touch-icon" href="{{ asset('images/okanet-icon-180.png') }}">
         @yield('robots')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -16,7 +18,7 @@
         <header class="site-header">
             <div class="site-width header-inner">
                 <a href="{{ route('home') }}" class="wordmark" aria-label="Okanet Solutions, inicio">
-                    <span class="brand-symbol" aria-hidden="true"></span>okanet<span class="wordmark-suffix">solutions</span>
+                    <img src="{{ asset('images/okanet-logo.png') }}" alt="" width="534" height="108" fetchpriority="high" decoding="async">
                 </a>
                 <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-menu" hidden>Menú <span aria-hidden="true">☰</span>
                 </button>
@@ -35,7 +37,7 @@
                 <div class="footer-grid">
                     <div class="footer-brand">
                         <a href="{{ route('home') }}" class="wordmark">
-                            <span class="brand-symbol" aria-hidden="true"></span>okanet<span class="wordmark-suffix">solutions</span>
+                            <img src="{{ asset('images/okanet-logo-light.png') }}" alt="Okanet Solutions" width="534" height="108" loading="lazy" decoding="async">
                         </a>
                         <p>Tecnología con criterio.<br>Desde Caracas, desde 2019.</p>
                         <p class="footer-registration">Okanet Solutions C.A.<br>RIF J-41299500-6</p>
