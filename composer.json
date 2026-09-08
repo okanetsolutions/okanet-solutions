@@ -13,7 +13,9 @@
         "laravel/framework": "^13.15",
         "laravel/sanctum": "^4.3.2",
         "laravel/tinker": "^3.0.2",
-        "sentry/sentry-laravel": "^4.27"
+        "sentry/sentry-laravel": "^4.27",
+        "symfony/http-client": "^8.1",
+        "symfony/postmark-mailer": "^8.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24.1",
