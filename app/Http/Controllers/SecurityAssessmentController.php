@@ -44,7 +44,7 @@ class SecurityAssessmentController extends Controller
             throw ValidationException::withMessages(['dns' => 'El código ha vencido. Genera uno nuevo y actualiza el registro TXT.']);
         }
         if (! $dns->hasTxtRecord($assessment->dnsName(), $assessment->dns_token)) {
-            throw ValidationException::withMessages(['dns' => 'Todavía no encontramos el registro TXT correcto. Revisa el nombre y el valor; la propagación puede tardar.']);
+            return back()->with('warning', 'Todavía no encontramos el registro TXT correcto. Revisa el nombre y el valor; la propagación puede tardar.');
         }
         SecurityAssessment::whereKey($assessment->id)
             ->where('status', SecurityAssessment::PendingVerification)->where('dns_token', $assessment->dns_token)

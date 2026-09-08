@@ -20,15 +20,15 @@
                 <p>Mostramos solo el resultado general para proteger la información. Contacta con nuestro equipo para recibir el informe completo.</p>
                 <p class="account-help">Consulta: {{ $scan->checked_at->format('d/m/Y H:i') }} UTC. Fuente: Breachsense, base de filtraciones de credenciales. No encontrar resultados no garantiza ausencia de exposición.</p>
                 @if($scan->details_requested_at)
-                    <p class="account-notice">Recibimos tu solicitud del informe completo. Te contactaremos en tu correo verificado.</p>
+                    <p class="account-notice account-success">Recibimos tu solicitud del informe completo. Te contactaremos en tu correo verificado.</p>
                 @else
                     <form method="post" action="{{ route('security.email.details', $scan) }}">@csrf<button class="button" type="submit">Solicitar informe completo</button></form>
                     <p class="account-help">Al solicitarlo, autorizas que te contactemos sobre el informe, los hallazgos y nuestros servicios de seguridad.</p>
                 @endif
             @elseif($scan?->status === \App\Models\EmailScan::Queued)
-                <p class="account-notice" role="status">Tu consulta anterior sigue en proceso. No necesitas actualizar esta página; te avisaremos cuando termine.</p>
+                <p class="account-notice account-warning" role="status">Tu consulta anterior sigue en proceso. No necesitas actualizar esta página; te avisaremos cuando termine.</p>
             @else
-                @if($scan?->status === \App\Models\EmailScan::Failed)<p class="account-notice account-error">No pudimos completar la consulta. No hay un resultado disponible; puedes volver a intentarlo.</p>@endif
+                @if($scan?->status === \App\Models\EmailScan::Failed)<p class="account-notice account-error" role="alert">No pudimos completar la consulta. No hay un resultado disponible; puedes volver a intentarlo.</p>@endif
                 <p>Comprueba si <strong>{{ auth()->user()->email }}</strong> aparece en las filtraciones de credenciales de Breachsense.</p>
                 @if($scanAvailable)
                     <form method="post" action="{{ route('security.email.store') }}" class="account-form">
@@ -37,7 +37,7 @@
                         <button class="button" type="submit">{{ $scan ? 'Volver a intentar' : 'Consultar mi correo' }}</button>
                     </form>
                 @else
-                    <p class="account-notice">La consulta de correo no está disponible por el momento. Puedes solicitar una evaluación de tu dominio.</p>
+                    <p class="account-notice account-warning">La consulta de correo no está disponible por el momento. Puedes solicitar una evaluación de tu dominio.</p>
                 @endif
             @endif
         </section>

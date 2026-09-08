@@ -68,13 +68,27 @@ it('refuses missing DNS proof absent consent and removed DNS records', function 
     expect($assessment->due_at)->toBeNull();
 });
 
-it('rejects unmatched or expired challenges and rotates expired tokens', function (): void {
+it('warns when the DNS challenge has not propagated', function (): void {
     $this->freezeTime();
     $assessment = SecurityAssessment::factory()->create();
     $this->mock(DnsLookup::class)->shouldReceive('hasTxtRecord')->once()->with($assessment->dnsName(), $assessment->dns_token)->andReturnFalse();
-    $this->actingAs($assessment->user)->post(route('security.assessments.verify', $assessment))->assertSessionHasErrors('dns');
+
+    $response = $this->actingAs($assessment->user)->post(route('security.assessments.verify', $assessment));
+
+    $response->assertRedirect()->assertSessionHas('warning', 'Todavía no encontramos el registro TXT correcto. Revisa el nombre y el valor; la propagación puede tardar.');
     expect($assessment->refresh()->dns_verified_at)->toBeNull();
+    $this->get(route('security.assessments.show', $assessment))
+        ->assertSee('account-notice account-warning', false)
+        ->assertSee('Todavía no encontramos el registro TXT correcto.');
+});
+
+it('rejects expired challenges and rotates expired tokens', function (): void {
+    $this->freezeTime();
+    $assessment = SecurityAssessment::factory()->create();
+    $this->actingAs($assessment->user);
+
     $this->travel(8)->days();
+
     $this->post(route('security.assessments.verify', $assessment))->assertSessionHasErrors('dns');
     $oldToken = $assessment->dns_token;
     $this->post(route('security.assessments.renew', $assessment))->assertRedirect();

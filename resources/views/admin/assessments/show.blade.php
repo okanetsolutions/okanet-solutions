@@ -9,7 +9,7 @@
             @if($assessment->authorized_at)
                 <p>{{ $assessment->authorization_text }}</p>
                 <dl class="account-details"><dt>Representante</dt><dd>{{ $assessment->authorized_by }} · {{ $assessment->authorization_email }}</dd><dt>Autorización</dt><dd>{{ $assessment->authorized_at->format('d/m/Y H:i') }} UTC · IP {{ $assessment->authorization_ip }}</dd><dt>Versión</dt><dd>{{ $assessment->authorization_version }}</dd><dt>Límite de respuesta y pruebas</dt><dd>{{ $assessment->due_at->format('d/m/Y H:i') }} UTC</dd></dl>
-                @if($assessment->due_at->isPast())<p class="account-notice account-error">La ventana autorizada ha vencido. No inicies nuevas pruebas; contacta al cliente para acordar una nueva autorización.</p>@endif
+                @if($assessment->due_at->isPast())<p class="account-notice account-error" role="alert">La ventana autorizada ha vencido. No inicies nuevas pruebas; contacta al cliente para acordar una nueva autorización.</p>@endif
                 @if($assessment->status === \App\Models\SecurityAssessment::Requested && $assessment->due_at->isFuture())
                     <form method="post" action="{{ route('admin.assessments.start', $assessment) }}">@csrf<button class="button" type="submit">Marcar en revisión</button></form>
                 @endif
@@ -36,7 +36,7 @@
             @if($assessment->status === \App\Models\SecurityAssessment::ReportReady)
                 <form method="post" action="{{ route('admin.assessments.deliver', $assessment) }}" class="account-form">@csrf<p>Al entregar, el cliente podrá descargar el informe y recibirá un aviso por correo.</p><button class="button" type="submit">Entregar informe</button></form>
             @elseif($assessment->delivered_at)
-                <p class="account-notice">Informe disponible y aviso enviado el {{ $assessment->delivered_at->format('d/m/Y H:i') }} UTC.</p>
+                <p class="account-notice account-success">Informe disponible y aviso enviado el {{ $assessment->delivered_at->format('d/m/Y H:i') }} UTC.</p>
             @endif
         </section>
     </div>

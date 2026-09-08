@@ -14,7 +14,10 @@
             </nav>
         @endauth
         @if(session('status'))
-            <p class="account-notice" role="status">{{ session('status') }}</p>
+            <p class="account-notice account-success" role="status">{{ session('status') }}</p>
+        @endif
+        @if(session('warning'))
+            <p class="account-notice account-warning" role="status">{{ session('warning') }}</p>
         @endif
         @if($errors->any())
             <div class="account-notice account-error" role="alert" tabindex="-1">
