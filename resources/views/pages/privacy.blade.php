@@ -17,6 +17,8 @@
             <strong>WhatsApp:</strong> si eliges continuar, el texto preparado se transmite a WhatsApp para abrir la conversación. Al enviarlo allí, Okanet recibe el mensaje y los datos de tu cuenta que WhatsApp comparte, como tu número y nombre de perfil.</li>
         <li>
             <strong>Administración:</strong> las personas autorizadas utilizan una cuenta con correo y contraseña. La aplicación mantiene la sesión y una cookie de acceso persistente al iniciar sesión.</li>
+        <li>
+            <strong>Notificaciones operativas:</strong> al registrarte o completar una acción que modifica datos, enviamos al responsable un aviso con tu nombre y correo si has iniciado sesión, la acción realizada, la ruta, la fecha y hora y la dirección IP. No incluimos contraseñas, tokens ni el contenido de los formularios.</li>
     </ul>
     <p>Los campos de empresa y mensaje son opcionales. El nombre se solicita para preparar el mensaje; puedes llamar o abrir WhatsApp directamente si no deseas utilizar el formulario. No envíes categorías especiales de datos, credenciales ni información confidencial.</p>
     <h2>3. Finalidades y bases jurídicas</h2>

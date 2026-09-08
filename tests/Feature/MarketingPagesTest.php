@@ -132,6 +132,8 @@ it('publishes the confirmed privacy contact and infrastructure providers', funct
         ->assertSee('NYC1 (Nueva York, Estados Unidos)')
         ->assertSee('Cloudflare R2')
         ->assertSee('Postmark')
+        ->assertSee('Notificaciones operativas')
+        ->assertSee('No incluimos contraseñas, tokens ni el contenido de los formularios')
         ->assertDontSee('Está pendiente incorporar la identidad')
         ->assertDontSee('Está pendiente confirmar el correo');
 });
