@@ -1,11 +1,12 @@
 @extends('layouts.account')
 @section('title', 'Crea tu cuenta — Okanet Solutions')
+@section('account-class', 'account-register-page')
 @section('account-content')
     <div class="account-narrow">
         <a class="text-link" href="{{ route('security') }}">← Ciberseguridad</a>
         <h1>Crea tu cuenta.</h1>
         <p>Verifica tu correo corporativo para consultar su exposición o solicitar una evaluación de tu dominio.</p>
-        <form method="post" action="{{ route('register') }}" class="account-form">
+        <form method="post" action="{{ route('register') }}" class="account-form account-register-form">
             @csrf
             <div><label for="name">Nombre completo</label><input id="name" name="name" autocomplete="name" value="{{ old('name') }}" required maxlength="255" autofocus></div>
             <div><label for="email">Correo corporativo</label><input id="email" name="email" type="email" autocomplete="email" value="{{ old('email') }}" required maxlength="255" aria-describedby="email-help"><p id="email-help" class="account-help">Usa el correo de tu empresa. No se admiten proveedores personales ni correos temporales.</p></div>

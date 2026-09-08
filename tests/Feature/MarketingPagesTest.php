@@ -165,6 +165,20 @@ it('renders the brand lockup artwork in the header, the footer and the browser i
         ->assertSee('rel="icon"', false);
 });
 
+it('keeps the complete primary journey in the home hero', function (): void {
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('Software que resuelve.')
+        ->assertSee('Un equipo que responde.')
+        ->assertSee('Hecho para tu día a día')
+        ->assertSee('Cuéntanos tu proyecto')
+        ->assertSee('Explorar productos')
+        ->assertSee('Conoce OkaISP')
+        ->assertSee(route('contact'), false)
+        ->assertSee(route('products'), false)
+        ->assertSee(route('products.okaisp'), false);
+});
+
 it('ships every brand asset the layouts reference', function (string $path): void {
     expect(public_path($path))->toBeReadableFile()
         ->and(filesize(public_path($path)))->toBeGreaterThan(0);

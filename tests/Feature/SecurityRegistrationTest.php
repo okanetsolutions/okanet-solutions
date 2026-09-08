@@ -140,7 +140,12 @@ it('routes customers to their dashboard and signs them out', function (): void {
 });
 
 it('renders registration recovery and verification screens privately', function (): void {
-    $this->get(route('register'))->assertOk()->assertSee('Crear cuenta y verificar correo')->assertHeader('X-Robots-Tag', 'noindex, nofollow');
+    $this->get(route('register'))
+        ->assertOk()
+        ->assertSee('account-register-page', false)
+        ->assertSee('account-register-form', false)
+        ->assertSee('Crear cuenta y verificar correo')
+        ->assertHeader('X-Robots-Tag', 'noindex, nofollow');
     $this->get(route('password.request'))->assertOk();
     $this->get(route('password.reset', ['token' => 'test-token', 'email' => 'ana@company.com']))->assertOk();
     $this->actingAs(User::factory()->unverified()->create())->get(route('verification.notice'))->assertOk()->assertSee('Revisa tu correo.');

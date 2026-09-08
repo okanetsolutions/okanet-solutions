@@ -1,7 +1,7 @@
 @extends('layouts.site')
 @section('robots')<meta name="robots" content="noindex, nofollow">@endsection
 @section('content')
-    <section class="site-width security-account">
+    <section class="site-width security-account @yield('account-class')">
         @auth
             <nav class="account-nav" aria-label="Navegación de cuenta">
                 <a href="{{ route('security.dashboard') }}">Mi seguridad</a>
