@@ -277,10 +277,11 @@
     .skip-link:focus { top: 1rem; }
     .site-header { position: sticky; top: 0; z-index: var(--z-header); background: var(--color-paper); border-bottom: 1px solid var(--color-mist); }
     .header-inner { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-    .wordmark { display: inline-flex; align-items: center; gap: .65rem; font-weight: 800; font-size: 1.75rem; letter-spacing: -.04em; flex-shrink: 0; }
-    .brand-symbol { display: inline-block; width: 23px; height: 23px; border: 6px solid var(--color-signal-deep); border-radius: 50%; position: relative; flex-shrink: 0; }
-    .brand-symbol::after { content: ''; position: absolute; height: 9px; width: 9px; background: var(--color-signal-deep); top: -8px; right: -8px; border: 2px solid var(--color-paper); border-radius: 50%; }
-    .wordmark-suffix { font-weight: 400; font-size: .75rem; letter-spacing: 0; align-self: flex-end; margin-bottom: .5rem; margin-left: -.15rem; }
+    .wordmark { display: inline-flex; align-items: center; flex-shrink: 0; }
+    .wordmark img { display: block; width: auto; height: 2.4rem; }
+    /* Single-colour surfaces mask the artwork so the lockup keeps its exact shape. */
+    .brand-lockup { display: block; height: 2.4rem; aspect-ratio: 1685 / 340; background-color: currentColor; -webkit-mask: url('/images/okanet-logo.png') no-repeat left center / contain; mask: url('/images/okanet-logo.png') no-repeat left center / contain; }
+    .brand-symbol { display: inline-block; height: 1.35em; aspect-ratio: 363 / 339; background-color: var(--color-signal-deep); flex-shrink: 0; -webkit-mask: url('/images/okanet-mark.png') no-repeat center / contain; mask: url('/images/okanet-mark.png') no-repeat center / contain; }
     .site-menu { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2rem); font-size: .9rem; font-weight: 500; }
     .site-menu > a:not(.button) { padding-block: 1rem; }
     .site-menu a[aria-current='page'], .site-menu > a:not(.button):hover { color: var(--color-signal-deep); text-decoration: underline; text-underline-offset: 6px; }
@@ -368,8 +369,7 @@
     .closing-inner p { margin-top: 1.2rem; line-height: 1.6; }
     .site-footer { background: var(--color-ink); color: var(--color-bone); padding-top: 4.5rem; }
     .footer-grid { display: grid; grid-template-columns: 1.35fr .8fr .8fr 1fr; gap: 2.5rem; padding-bottom: 3.5rem; }
-    .site-footer .brand-symbol { border-color: var(--color-signal); }
-    .site-footer .brand-symbol::after { background: var(--color-signal); border-color: var(--color-ink); }
+    .site-footer .wordmark img { height: 2.25rem; }
     .footer-brand > p { margin-top: 1.25rem; }
     .footer-grid h2 { font-size: .9rem; font-weight: 600; margin-bottom: 1.2rem; }
     .footer-grid p, .footer-grid nav a { color: var(--color-fog); line-height: 1.8; font-size: .875rem; }
@@ -384,8 +384,7 @@
     .product-preview { background: var(--color-graphite); color: var(--color-bone); border-radius: 7px; overflow: hidden; min-width: 0; }
     .preview-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--color-graphite-2); padding: 1rem 1.25rem; }
     .preview-brand { display: flex; align-items: center; gap: .65rem; font-size: .875rem; font-weight: 600; }
-    .preview-brand .brand-symbol { width: 15px; height: 15px; border-width: 4px; border-color: var(--color-signal); }
-    .preview-brand .brand-symbol::after { width: 6px; height: 6px; top: -5px; right: -5px; background: var(--color-signal); border-color: var(--color-graphite); border-width: 1px; }
+    .preview-brand .brand-symbol { height: 1.15em; background-color: var(--color-signal); }
     .preview-label { color: var(--color-fog); font-size: .7rem; }
     .preview-body { padding: 1.5rem 1.25rem 1rem; }
     .preview-heading { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
@@ -411,8 +410,7 @@
     .preview-store .preview-label, .preview-store .preview-heading p, .preview-store .preview-summary, .preview-store .preview-table th, .preview-store .preview-table td:nth-child(2), .preview-store .preview-workflow { color: var(--color-umber); }
     .preview-store .status-label { color: var(--color-emerald-deep); }
     .preview-store .status-pending { color: oklch(0.44 0.1 60); }
-    .preview-store .preview-brand .brand-symbol { border-color: var(--color-signal-deep); }
-    .preview-store .preview-brand .brand-symbol::after { border-color: var(--color-paper); background: var(--color-signal-deep); }
+    .preview-store .preview-brand .brand-symbol { background-color: var(--color-signal-deep); }
     .preview-store .preview-workflow > span:nth-child(even) { color: var(--color-signal-deep); }
     .preview-store figcaption { color: var(--color-umber); background: var(--color-mist); }
 
@@ -473,8 +471,7 @@
     .story-grid h2 { margin-bottom: 1.8rem; }
     .story-grid p + p { margin-top: 1.25rem; }
     .company-stamp { background: var(--color-signal-deep); color: white; padding: 2.5rem; min-height: 360px; display: flex; flex-direction: column; align-items: start; justify-content: space-between; border-radius: 8px; }
-    .company-stamp .brand-symbol { border-color: white; }
-    .company-stamp .brand-symbol::after { background: white; border-color: var(--color-signal-deep); }
+    .company-stamp .brand-lockup { height: 2.75rem; }
     .company-stamp p { color: white; font-size: 3rem; letter-spacing: -.03em; line-height: 1.1; font-weight: 500; }
     .company-stamp > span:last-child { font-size: .85rem; }
 
@@ -555,7 +552,7 @@
     }
     @media (max-width: 767px) {
         .site-width { width: min(100% - 2.5rem, 78rem); }
-        .wordmark { font-size: 1.5rem; }
+        .wordmark img, .brand-lockup { height: 2.05rem; }
         .hero-grid, .section-intro, .expertise-grid, .product-hero-grid, .product-detail-row, .capability-list, .split-copy, .faq-section, .security-hero-grid, .security-services, .story-grid, .contact-page, .legal-page { grid-template-columns: 1fr; }
         .hero-grid { padding-block: 3.5rem 2.5rem; gap: 3rem; }
         .hero-copy h1 { font-size: clamp(2.35rem, 7vw, 3.5rem); }
@@ -594,7 +591,6 @@
         .legal-page h1 { font-size: 2.2rem; }
     }
     @media (max-width: 380px) {
-        .wordmark-suffix { display: none; }
         .hero-product, .product-offering { padding: 1.1rem; }
         .preview-body { padding-inline: .8rem; }
         .preview-table { font-size: .65rem; }
