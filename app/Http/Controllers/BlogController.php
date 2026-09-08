@@ -15,7 +15,7 @@ class BlogController extends Controller
 
     public function show(Post $post)
     {
-        abort_unless($post->isPublished() || auth()->check(), 404);
+        abort_unless($post->isPublished() || auth()->user()?->can('staff'), 404);
 
         return view('blog.show', compact('post'));
     }

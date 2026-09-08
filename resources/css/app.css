@@ -624,3 +624,53 @@
     .blog-empty p { color: var(--color-umber); line-height: 1.8; max-width: 62ch; margin-bottom: 1.5rem; }
     @media (max-width: 767px) { .blog-post-row { grid-template-columns: 1fr; gap: 1rem; } }
 }
+
+/* Verified customer accounts and the manual assessment workflow. */
+.security-account { padding-block: clamp(3rem, 6vw, 5rem); min-height: 65vh; }
+.account-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; padding-bottom: 1.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--color-fog); }
+.account-nav form { margin-left: auto; }
+.account-heading { margin-block: 1.5rem 2.5rem; }
+.security-account h1 { font-size: 2.5rem; line-height: 1.12; font-weight: 700; letter-spacing: -.03em; overflow-wrap: anywhere; text-wrap: balance; margin-bottom: 1rem; }
+.security-account h2 { font-size: 1.5rem; line-height: 1.25; font-weight: 600; margin-bottom: 1rem; }
+.security-account p { max-width: 70ch; line-height: 1.65; margin-block: 1rem; }
+.account-narrow { max-width: 42rem; margin-inline: auto; }
+.account-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; align-items: start; }
+.account-panel { padding: clamp(1.25rem, 3vw, 2rem); background: var(--color-surface); border: 1px solid var(--color-fog); border-radius: 8px; min-width: 0; }
+.account-form { display: grid; gap: 1.35rem; margin-block: 1.5rem; }
+.account-form label { display: block; font-weight: 500; margin-bottom: .45rem; }
+.account-form input:not([type="checkbox"]), .account-form textarea { width: 100%; padding: .8rem .9rem; background: var(--color-surface); border: 1px solid var(--color-greige); border-radius: 4px; font: inherit; min-width: 0; }
+.account-form input::placeholder, .account-form textarea::placeholder { color: var(--color-umber); }
+.account-form textarea { resize: vertical; }
+.account-form .account-check { display: flex; align-items: flex-start; gap: .75rem; font-weight: 400; line-height: 1.5; }
+.account-check input { width: 1.15rem; height: 1.15rem; flex-shrink: 0; margin-top: .2rem; accent-color: var(--color-signal-deep); }
+.account-check a, .account-help a { text-decoration: underline; text-underline-offset: 3px; }
+.account-form .button { justify-self: start; }
+.security-account .account-help { font-size: .875rem; color: var(--color-umber); margin-block: .5rem; }
+.account-notice { padding: 1rem 1.25rem; background: var(--color-mist); border: 1px solid var(--color-fog); border-radius: 4px; overflow-wrap: anywhere; }
+.account-error { color: oklch(.38 .14 25); border-color: currentColor; }
+.account-error ul { list-style: disc; padding-left: 1.25rem; }
+.account-result { font-size: 1.25rem; font-weight: 600; }
+.account-section { margin-top: 3rem; }
+.account-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--color-fog); overflow-wrap: anywhere; }
+.account-row > * { min-width: 0; }
+.account-row small { display: block; margin-top: .35rem; color: var(--color-umber); }
+a.account-row:hover { background: var(--color-mist); }
+.account-details { margin-block: 1.5rem; }
+.account-details dt { font-size: .875rem; font-weight: 600; margin-top: 1rem; }
+.account-details dd { margin-top: .35rem; overflow-wrap: anywhere; }
+.account-details code { font-size: .875rem; }
+.account-preserve { white-space: pre-wrap; overflow-wrap: anywhere; }
+.security-account details { margin-top: 1.5rem; }
+.security-account summary { cursor: pointer; font-weight: 500; }
+.security-offers .account-panel { background: transparent; }
+.security-offers h2 { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.12; font-weight: 600; letter-spacing: -.03em; text-wrap: balance; margin-bottom: 2rem; }
+.security-offers > p { margin-top: 1.5rem; }
+.security-offers h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+.security-offers p { line-height: 1.65; margin-bottom: 1.5rem; }
+.security-offers .account-help { margin-top: 1rem; color: var(--color-umber); font-size: .875rem; }
+@media (max-width: 760px) {
+    .account-columns { grid-template-columns: minmax(0, 1fr); }
+    .security-account h1 { font-size: 2rem; }
+    .account-nav form { margin-left: 0; }
+    .account-row { align-items: flex-start; flex-direction: column; }
+}

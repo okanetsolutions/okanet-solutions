@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $query = $request->user() && $request->query('include') === 'drafts'
+        $query = $request->user()?->can('staff') && $request->query('include') === 'drafts'
             ? Post::query()
             : Post::published();
 
@@ -27,7 +27,7 @@ class PostController extends Controller
 
     public function show(Request $request, Post $post)
     {
-        abort_unless($post->isPublished() || $request->user(), 404);
+        abort_unless($post->isPublished() || $request->user()?->can('staff'), 404);
 
         return new PostResource($post);
     }

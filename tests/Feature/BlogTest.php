@@ -39,7 +39,7 @@ it('hides drafts from guests but shows them to the admin', function () {
 
     get(route('blog.show', $draft))->assertNotFound();
 
-    actingAs(User::factory()->create())
+    actingAs(User::factory()->staff()->create())
         ->get(route('blog.show', $draft))
         ->assertOk();
 });
@@ -49,7 +49,7 @@ it('requires login for the admin panel', function () {
 });
 
 it('lets the admin create, update and delete a post', function () {
-    actingAs(User::factory()->create());
+    actingAs(User::factory()->staff()->create());
 
     post('/admin/posts', [
         'title' => 'Mi primer artículo',
@@ -78,10 +78,10 @@ it('lets the admin create, update and delete a post', function () {
 });
 
 it('authenticates with valid credentials', function () {
-    $user = User::factory()->create(['password' => bcrypt('secret-123')]);
+    $user = User::factory()->staff()->create(['password' => bcrypt('secret-123')]);
 
     post('/login', ['email' => $user->email, 'password' => 'secret-123'])
-        ->assertRedirect(route('admin.posts.index'));
+        ->assertRedirect(route('admin.assessments.index'));
 
     expect(auth()->check())->toBeTrue();
 });
