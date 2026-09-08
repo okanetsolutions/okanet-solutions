@@ -1,0 +1,30 @@
+name: NPM Install
+description: Install Node dependencies reusing a node_modules cache saved from the default branch.
+
+inputs:
+  save-cache:
+    description: Save the node_modules cache on a default branch push. Enable it on exactly one workflow.
+    default: 'false'
+
+runs:
+  using: composite
+  steps:
+    - name: Restore Node Modules
+      id: cache
+      uses: actions/cache/restore@v4
+      with:
+        path: node_modules
+        key: node-modules-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          node-modules-${{ runner.os }}-${{ runner.arch }}-
+
+    - name: Install Node Dependencies
+      shell: bash
+      run: npm ci --include=dev
+
+    - name: Save Node Modules
+      if: inputs.save-cache == 'true' && github.event_name == 'push' && github.ref_name == github.event.repository.default_branch && steps.cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: node_modules
+        key: node-modules-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('package-lock.json') }}

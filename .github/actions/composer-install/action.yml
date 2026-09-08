@@ -1,0 +1,30 @@
+name: Composer Install
+description: Install PHP dependencies reusing a vendor cache saved from the default branch.
+
+inputs:
+  save-cache:
+    description: Save the vendor cache on a default branch push. Enable it on exactly one workflow.
+    default: 'false'
+
+runs:
+  using: composite
+  steps:
+    - name: Restore Vendor
+      id: cache
+      uses: actions/cache/restore@v4
+      with:
+        path: vendor
+        key: vendor-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('composer.lock') }}
+        restore-keys: |
+          vendor-${{ runner.os }}-${{ runner.arch }}-
+
+    - name: Install Dependencies
+      shell: bash
+      run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+    - name: Save Vendor
+      if: inputs.save-cache == 'true' && github.event_name == 'push' && github.ref_name == github.event.repository.default_branch && steps.cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: vendor
+        key: vendor-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('composer.lock') }}
