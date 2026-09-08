@@ -2,6 +2,12 @@
 
 return [
 
+    'breachsense' => [
+        'enabled' => env('BREACHSENSE_ENABLED', false),
+        'key' => env('BREACHSENSE_API_KEY'),
+        'monthly_query_limit' => (int) env('BREACHSENSE_MONTHLY_QUERY_LIMIT', 100),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

@@ -10,7 +10,7 @@
                     <span>Actúa con criterio.</span>
                 </h1>
                 <p class="page-lead">Evaluamos tus aplicaciones, redes e infraestructura para ayudarte a identificar puntos débiles y priorizar las correcciones.</p>
-                <a class="button button-light" href="{{ route('contact', ['interest' => 'Protección de ciberseguridad']) }}">Hablemos de tu seguridad <span aria-hidden="true">↗</span>
+                <a class="button button-light" href="#consultas-gratuitas">Consulta tu exposición <span aria-hidden="true">↗</span>
                 </a>
             </div>
             <div class="security-deliverable">
@@ -33,6 +33,24 @@
                 <span class="security-scope">Siempre con autorización y alcance acordado.</span>
             </div>
         </div>
+    </section>
+    <section id="consultas-gratuitas" class="section-space site-width security-offers">
+        <h2>Empieza con una consulta gratuita.</h2>
+        <div class="account-columns">
+            <article class="account-panel">
+                <h3>¿Tu correo aparece en una filtración?</h3>
+                <p>Crea tu cuenta con un correo corporativo y verifícalo. Consulta cuántos registros de exposición encontramos y solicita más información para conocer los siguientes pasos.</p>
+                <a class="button" href="{{ auth()->check() ? route('security.dashboard') : route('register') }}">Consultar mi correo</a>
+                <p class="account-help">Consulta de filtraciones de credenciales con Breachsense. No mostramos contraseñas ni datos sensibles. Sujeto a disponibilidad del servicio.</p>
+            </article>
+            <article class="account-panel">
+                <h3>Una primera evaluación de tu dominio.</h3>
+                <p>Verifica tu correo y el control de tu dominio mediante un registro DNS. Autoriza la revisión y recibe un informe preliminar de nuestro equipo en 24–48 horas.</p>
+                <a class="button" href="{{ auth()->check() ? route('security.dashboard') : route('register') }}">Solicitar evaluación</a>
+                <p class="account-help">El plazo comienza tras la verificación y autorización. Las pruebas de penetración adicionales requieren un alcance acordado por escrito.</p>
+            </article>
+        </div>
+        @guest<p>¿Ya tienes cuenta? <a class="text-link" href="{{ route('login') }}">Inicia sesión</a>.</p>@endguest
     </section>
     <section class="section-space site-width">
         <div class="section-intro">

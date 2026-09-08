@@ -46,7 +46,7 @@ it('includes drafts for authenticated requests when asked', function () {
     Post::factory()->count(2)->create();
     Post::factory()->draft()->create();
 
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs(User::factory()->staff()->create());
 
     getJson('/api/posts?include=drafts')->assertOk()->assertJsonCount(3, 'data');
 });
@@ -64,7 +64,7 @@ it('blocks writes without a token', function () {
 });
 
 it('creates, updates and deletes a post with a token', function () {
-    Sanctum::actingAs(User::factory()->create());
+    Sanctum::actingAs(User::factory()->staff()->create());
 
     $created = postJson('/api/posts', [
         'title' => 'Post desde la API',

@@ -16,7 +16,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', fn (Request $request) => $request->user())->name('api.user');
     Route::delete('/auth/token', [AuthController::class, 'destroy'])->name('api.auth.logout');
 
-    Route::post('/posts', [PostController::class, 'store'])->name('api.posts.store');
-    Route::put('/posts/{post}', [PostController::class, 'update'])->name('api.posts.update');
-    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('api.posts.destroy');
+    Route::post('/posts', [PostController::class, 'store'])->middleware('can:staff')->name('api.posts.store');
+    Route::put('/posts/{post}', [PostController::class, 'update'])->middleware('can:staff')->name('api.posts.update');
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('can:staff')->name('api.posts.destroy');
 });
