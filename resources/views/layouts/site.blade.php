@@ -1,99 +1,104 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Okanet Solutions — Software desde Caracas')</title>
-    <meta name="description" content="@yield('description', 'Okanet Solutions C.A. — Software, automatización y ciberseguridad para empresas en Venezuela.')">
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=archivo:400,500,600,700,800|martian-mono:300,400,500&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-paper text-espresso antialiased font-sans selection:bg-signal selection:text-ink">
-
-    <a href="#contenido" class="skip-link">Saltar al contenido</a>
-
-    {{-- Navigation — shared chrome, matches the landing --}}
-    <nav class="fixed top-0 w-full z-[60] bg-ink border-b border-bone/10">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="{{ route('home') }}" class="group flex items-center gap-2.5">
-                <span class="inline-flex w-2.5 h-2.5 rounded-full bg-signal"></span>
-                <span class="text-lg font-display font-extrabold tracking-tight text-bone">okanet</span>
-            </a>
-            <div class="hidden md:flex items-center gap-6 text-sm text-fog">
-                <a href="{{ route('home') }}#sistema" class="nav-link hover:text-bone transition-colors">Cómo trabajamos</a>
-                <a href="{{ route('home') }}#productos" class="nav-link hover:text-bone transition-colors">Productos</a>
-                <a href="{{ route('home') }}#amedida" class="nav-link hover:text-bone transition-colors">A medida</a>
-                <a href="{{ route('home') }}#seguridad" class="nav-link hover:text-bone transition-colors">Ciberseguridad</a>
-                <a href="{{ route('blog.index') }}" class="nav-link hover:text-bone transition-colors {{ request()->routeIs('blog.*') ? 'text-bone' : '' }}">Blog</a>
-                <a href="{{ route('home') }}#contacto" class="pressable inline-flex items-center gap-2 px-4 py-2 bg-bone text-ink font-semibold rounded-sm hover:bg-signal">Contacto</a>
-            </div>
-            <button id="menu-toggle" class="md:hidden text-bone -mr-1 p-3" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></svg>
-            </button>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-5 pt-1 space-y-1 text-sm border-t border-bone/10 bg-ink">
-            <a href="{{ route('home') }}#sistema" class="block py-2.5 text-fog hover:text-bone transition-colors">Cómo trabajamos</a>
-            <a href="{{ route('home') }}#productos" class="block py-2.5 text-fog hover:text-bone transition-colors">Productos</a>
-            <a href="{{ route('home') }}#amedida" class="block py-2.5 text-fog hover:text-bone transition-colors">A medida</a>
-            <a href="{{ route('home') }}#seguridad" class="block py-2.5 text-fog hover:text-bone transition-colors">Ciberseguridad</a>
-            <a href="{{ route('blog.index') }}" class="block py-2.5 text-fog hover:text-bone transition-colors">Blog</a>
-            <a href="{{ route('home') }}#contacto" class="block py-2.5 text-signal font-semibold">Contacto →</a>
-        </div>
-    </nav>
-
-    <main id="contenido">
-        @yield('content')
-    </main>
-
-    {{-- Footer — shared chrome, matches the landing --}}
-    <footer class="bg-ink text-bone pt-16 pb-10 border-t border-bone/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-10 mb-14">
-                <div class="md:col-span-5">
-                    <a href="{{ route('home') }}" class="flex items-center gap-2.5 mb-5">
-                        <span class="inline-flex w-2.5 h-2.5 rounded-full bg-signal"></span>
-                        <span class="text-lg font-display font-extrabold tracking-tight">okanet</span>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="no-referrer">
+        <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; frame-src 'none'; object-src 'none'; base-uri 'self';">
+        <title>@yield('title', 'Okanet Solutions — Software y ciberseguridad desde Caracas')</title>
+        <meta name="description" content="@yield('description', 'Software para proveedores de internet y comercios, desarrollo a medida y ciberseguridad. Okanet Solutions, desde Caracas, Venezuela.')">
+        <link rel="canonical" href="{{ url()->current() }}">
+        @yield('robots')
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="bg-paper text-espresso antialiased font-sans selection:bg-signal selection:text-ink">
+        <a href="#contenido" class="skip-link">Saltar al contenido</a>
+        <header class="site-header">
+            <div class="site-width header-inner">
+                <a href="{{ route('home') }}" class="wordmark" aria-label="Okanet Solutions, inicio">
+                    <span class="brand-symbol" aria-hidden="true"></span>okanet<span class="wordmark-suffix">solutions</span>
+                </a>
+                <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-menu" hidden>Menú <span aria-hidden="true">☰</span>
+                </button>
+                <nav id="site-menu" class="site-menu" aria-label="Navegación principal">
+                    @foreach (['products' => 'Productos', 'development' => 'A medida', 'security' => 'Ciberseguridad', 'about' => 'Nosotros', 'blog.index' => 'Blog'] as $name => $label)
+                        <a href="{{ route($name) }}" @if(request()->routeIs($name, $name === 'products' ? 'products.*' : ($name === 'blog.index' ? 'blog.*' : $name))) aria-current="page" @endif>{{ $label }}</a>
+                    @endforeach
+                    <a href="{{ route('contact') }}" class="button button-small">Hablemos <span aria-hidden="true">↗</span>
                     </a>
-                    <p class="text-fog leading-relaxed max-w-sm mb-5">
-                        Software y ciberseguridad para empresas en Venezuela. Desde Caracas, 2019.
-                    </p>
-                    <p class="text-sm text-fog">Okanet Solutions C.A. · RIF J-41299500-6</p>
+                </nav>
+            </div>
+        </header>
+        <main id="contenido" tabindex="-1">@yield('content')</main>
+        <footer class="site-footer">
+            <div class="site-width">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="{{ route('home') }}" class="wordmark">
+                            <span class="brand-symbol" aria-hidden="true"></span>okanet<span class="wordmark-suffix">solutions</span>
+                        </a>
+                        <p>Tecnología con criterio.<br>Desde Caracas, desde 2019.</p>
+                        <p class="footer-registration">Okanet Solutions C.A.<br>RIF J-41299500-6</p>
+                    </div>
+                    <nav aria-label="Soluciones">
+                        <h2>Soluciones</h2>
+                        <a href="{{ route('products.okaisp') }}">OkaISP</a>
+                        <a href="{{ route('products.okastore') }}">OkaStore</a>
+                        <a href="{{ route('development') }}">Desarrollo a medida</a>
+                        <a href="{{ route('security') }}">Ciberseguridad</a>
+                    </nav>
+                    <nav aria-label="Empresa">
+                        <h2>Conócenos</h2>
+                        <a href="{{ route('about') }}">Nosotros</a>
+                        <a href="{{ route('blog.index') }}">Blog</a>
+                        <a href="{{ route('contact') }}">Contacto</a>
+                        <a href="mailto:info@okanetsolutions.com" class="break-all">info@okanetsolutions.com</a>
+                        <a href="tel:+584241780659">+58 424 178 0659</a>
+                    </nav>
+                    <div>
+                        <h2>Nos encuentras en Caracas</h2>
+                        <p>Av. Rómulo Gallegos con Calle Pedro Manrique<br>Edif. Centro ALOA, PP-36-L<br>Caracas 1071, Venezuela</p>
+                    </div>
                 </div>
-                <nav class="md:col-span-2" aria-label="Productos">
-                    <h2 class="text-sm font-semibold text-bone mb-4">Productos</h2>
-                    <ul class="space-y-2.5 text-sm text-fog">
-                        <li><a href="{{ route('home') }}#okaisp" class="hover:text-signal transition-colors">OkaISP</a></li>
-                        <li><a href="{{ route('home') }}#okastore" class="hover:text-signal transition-colors">OkaStore</a></li>
-                        <li><a href="{{ route('home') }}#seguridad" class="hover:text-signal transition-colors">Ciberseguridad</a></li>
-                        <li><a href="{{ route('home') }}#amedida" class="hover:text-signal transition-colors">A medida</a></li>
-                    </ul>
-                </nav>
-                <nav class="md:col-span-2" aria-label="Empresa">
-                    <h2 class="text-sm font-semibold text-bone mb-4">Empresa</h2>
-                    <ul class="space-y-2.5 text-sm text-fog">
-                        <li><a href="{{ route('home') }}#sistema" class="hover:text-signal transition-colors">Cómo trabajamos</a></li>
-                        <li><a href="{{ route('home') }}#okanet" class="hover:text-signal transition-colors">Por qué Okanet</a></li>
-                        <li><a href="{{ route('blog.index') }}" class="hover:text-signal transition-colors">Blog</a></li>
-                        <li><a href="{{ route('home') }}#contacto" class="hover:text-signal transition-colors">Contacto</a></li>
-                    </ul>
-                </nav>
-                <div class="md:col-span-3">
-                    <h2 class="text-sm font-semibold text-bone mb-4">Sede</h2>
-                    <p class="text-fog text-sm leading-relaxed">
-                        Av. Rómulo Gallegos<br>
-                        Edif. Centro ALOA, PP-36-L<br>
-                        Caracas 1071, Venezuela
-                    </p>
+                <div class="footer-bottom">
+                    <p>© {{ date('Y') }} Okanet Solutions C.A.</p>
+                    <nav aria-label="Información legal">
+                        <a href="{{ route('privacy') }}">Privacidad</a>
+                        <a href="{{ route('terms') }}">Términos y condiciones</a>
+                        <a href="{{ route('cookies') }}" data-cookie-settings>Cookies y preferencias</a>
+                    </nav>
                 </div>
             </div>
-
-            <div class="pt-8 border-t border-bone/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-sm text-fog">
-                <p>&copy; {{ date('Y') }} Okanet Solutions C.A. · Todos los derechos reservados.</p>
-                <p>Caracas, Venezuela</p>
+        </footer>
+        <dialog id="cookie-settings" class="cookie-dialog" aria-labelledby="cookie-title" aria-describedby="cookie-description">
+            <div class="dialog-heading">
+                <h2 id="cookie-title">Tu privacidad, por defecto.</h2>
+                <form method="dialog">
+                    <button class="dialog-close" aria-label="Cerrar preferencias de cookies" autofocus>×</button>
+                </form>
             </div>
-        </div>
-    </footer>
-
-</body>
+            <p id="cookie-description">La aplicación utiliza cookies técnicas de sesión y seguridad. Cloudflare puede añadir cookies de protección según su configuración. La aplicación no incorpora cookies de analítica ni publicidad.</p>
+            <dl class="cookie-categories">
+                <div>
+                    <dt>Necesarias</dt>
+                    <dd>Siempre activas <span aria-hidden="true">✓</span>
+                    </dd>
+                </div>
+                <div>
+                    <dt>Analítica</dt>
+                    <dd>No utilizadas</dd>
+                </div>
+                <div>
+                    <dt>Publicidad</dt>
+                    <dd>No utilizadas</dd>
+                </div>
+            </dl>
+            <p>No hay cookies opcionales que aceptar o rechazar en esta aplicación. No guardamos esta interacción. Los canales externos de contacto, como WhatsApp, solo se abren cuando eliges visitarlos. El tratamiento por DigitalOcean NYC1, Cloudflare (proxy y R2) y Postmark se explica en nuestras políticas.</p>
+            <a class="text-link" href="{{ route('cookies') }}">Leer la política de cookies <span aria-hidden="true">↗</span>
+            </a>
+            <form method="dialog">
+                <button class="button">Entendido</button>
+            </form>
+        </dialog>
+    </body>
 </html>

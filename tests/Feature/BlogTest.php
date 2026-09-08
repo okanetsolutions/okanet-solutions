@@ -18,7 +18,7 @@ it('shows published posts on the blog index', function () {
     get('/blog')
         ->assertOk()
         ->assertSee('Artículo publicado')
-        ->assertSee(route('home').'#seguridad', false)
+        ->assertSee(route('security'), false)
         ->assertSee('Ciberseguridad')
         ->assertDontSee('Borrador secreto');
 });

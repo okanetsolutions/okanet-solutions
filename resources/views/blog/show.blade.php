@@ -4,7 +4,7 @@
 @section('description', $post->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($post->body), 150))
 
 @section('content')
-    <article class="relative pt-36 pb-24 md:pt-44 md:pb-32 bg-paper">
+    <article class="relative pt-16 pb-24 md:pt-24 md:pb-32 bg-paper">
         <div class="absolute inset-0 schematic mask-fade opacity-60 pointer-events-none"></div>
 
         <div class="relative max-w-3xl mx-auto px-6">

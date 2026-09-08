@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Admin — Okanet Solutions')</title>
     <meta name="robots" content="noindex, nofollow">
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=fraunces:400,500,600,700|inter:300,400,500,600,700|jetbrains-mono:400,500,600&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-bone text-espresso antialiased font-sans selection:bg-terracotta selection:text-bone min-h-screen">
