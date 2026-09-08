@@ -683,6 +683,13 @@
 .account-error { color: oklch(.38 .14 25); border-color: currentColor; }
 .account-error ul { list-style: disc; padding-left: 1.25rem; }
 .account-result { font-size: 1.25rem; font-weight: 600; }
+.account-report-preview { position: relative; margin-block: 1.5rem; padding-block: 1.25rem; border-block: 1px solid var(--color-fog); overflow: hidden; }
+.account-report-preview-data { display: grid; grid-template-columns: minmax(0, 1fr) minmax(5rem, .8fr); align-items: center; gap: .85rem 1.25rem; color: var(--color-umber); filter: blur(3px); opacity: .55; user-select: none; }
+.account-report-preview-data span { font-size: .875rem; }
+.account-report-preview-data i { display: block; height: .7rem; background: var(--color-graphite-2); border-radius: 2px; }
+.account-report-preview-data i:nth-of-type(2) { width: 72%; }
+.account-report-preview-data i:nth-of-type(3) { width: 88%; }
+.account-report-preview-label { position: absolute; top: 50%; left: 50%; padding: .45rem .7rem; background: var(--color-surface); color: var(--color-signal-deep); border-radius: 4px; font-size: .75rem; font-weight: 700; transform: translate(-50%, -50%); }
 .account-section { margin-top: 3rem; }
 .account-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--color-fog); overflow-wrap: anywhere; }
 .account-row > * { min-width: 0; }

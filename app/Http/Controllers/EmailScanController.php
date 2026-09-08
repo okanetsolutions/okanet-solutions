@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\CheckEmailExposure;
 use App\Models\EmailScan;
+use App\Services\Breachsense;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -11,7 +12,7 @@ use Throwable;
 
 class EmailScanController extends Controller
 {
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, Breachsense $breachsense): RedirectResponse
     {
         $request->validate(['consent' => ['accepted']], [
             'consent.accepted' => 'Autoriza la consulta de tu correo en Breachsense para continuar.',
@@ -21,22 +22,32 @@ class EmailScanController extends Controller
         }
 
         $scan = EmailScan::firstOrCreate(['user_id' => $request->user()->id], ['email' => $request->user()->email]);
-        $shouldDispatch = $scan->wasRecentlyCreated;
-        if (! $shouldDispatch) {
-            $shouldDispatch = EmailScan::whereKey($scan->id)->where('status', EmailScan::Failed)
+        $shouldCheck = $scan->wasRecentlyCreated;
+        if (! $shouldCheck) {
+            $shouldCheck = EmailScan::whereKey($scan->id)->where('status', EmailScan::Failed)
                 ->update(['status' => EmailScan::Queued]) === 1;
         }
-        if ($shouldDispatch) {
+        if ($shouldCheck) {
+            $job = new CheckEmailExposure($scan->id);
+
             try {
-                CheckEmailExposure::dispatch($scan->id)->afterCommit();
+                $job->handle($breachsense);
             } catch (Throwable $exception) {
-                EmailScan::whereKey($scan->id)->where('status', EmailScan::Queued)->update(['status' => EmailScan::Failed]);
+                $job->failed($exception);
                 report($exception);
-                throw ValidationException::withMessages(['scan' => 'No pudimos poner la consulta en cola. Inténtalo de nuevo más tarde.']);
+                throw ValidationException::withMessages(['scan' => 'No pudimos completar la consulta. Inténtalo de nuevo más tarde.']);
+            }
+
+            if ($scan->refresh()->status !== EmailScan::Completed) {
+                throw ValidationException::withMessages(['scan' => 'No pudimos completar la consulta. Inténtalo de nuevo más tarde.']);
             }
         }
 
-        return redirect()->route('security.dashboard')->with('status', 'Consulta recibida. Actualiza esta página para ver el resultado.');
+        $status = $scan->status === EmailScan::Completed
+            ? 'Consulta completada. Tu resultado ya está disponible.'
+            : 'Tu consulta ya está en proceso. Te avisaremos cuando termine.';
+
+        return redirect()->route('security.dashboard')->with('status', $status);
     }
 
     public function requestDetails(Request $request, EmailScan $scan): RedirectResponse
@@ -45,6 +56,6 @@ class EmailScanController extends Controller
         abort_unless($scan->status === EmailScan::Completed, 409);
         EmailScan::whereKey($scan->id)->whereNull('details_requested_at')->update(['details_requested_at' => now()]);
 
-        return back()->with('status', 'Solicitud recibida. Nos pondremos en contacto contigo en tu correo verificado.');
+        return back()->with('status', 'Solicitud recibida. Te contactaremos para compartir el informe completo y los siguientes pasos.');
     }
 }
