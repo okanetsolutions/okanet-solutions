@@ -2,6 +2,11 @@
 
 return [
 
+    'activity_notifications' => [
+        'enabled' => (bool) env('SITE_ACTIVITY_NOTIFICATIONS_ENABLED', true),
+        'recipient' => env('SITE_ACTIVITY_NOTIFICATION_EMAIL', 'nadinyamaui@outlook.com'),
+    ],
+
     'breachsense' => [
         'enabled' => env('BREACHSENSE_ENABLED', false),
         'key' => env('BREACHSENSE_API_KEY'),

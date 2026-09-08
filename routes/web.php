@@ -33,12 +33,12 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/login', [LoginController::class, 'show'])->middleware(PrivateResponse::class)->name('login');
-Route::post('/login', [LoginController::class, 'store'])->middleware([PrivateResponse::class, 'throttle:5,1']);
+Route::post('/login', [LoginController::class, 'store'])->middleware([PrivateResponse::class, 'throttle:5,1'])->name('login.store');
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 Route::middleware([PrivateResponse::class, 'guest'])->group(function (): void {
     Route::get('/register', [RegistrationController::class, 'create'])->name('register');
-    Route::post('/register', [RegistrationController::class, 'store'])->middleware('throttle:registration');
+    Route::post('/register', [RegistrationController::class, 'store'])->middleware('throttle:registration')->name('register.store');
     Route::get('/forgot-password', [PasswordResetController::class, 'create'])->name('password.request');
     Route::post('/forgot-password', [PasswordResetController::class, 'store'])->middleware('throttle:5,1')->name('password.email');
     Route::get('/reset-password/{token}', [PasswordResetController::class, 'edit'])->name('password.reset');
