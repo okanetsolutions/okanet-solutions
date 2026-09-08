@@ -148,7 +148,14 @@ it('renders registration recovery and verification screens privately', function 
         ->assertHeader('X-Robots-Tag', 'noindex, nofollow');
     $this->get(route('password.request'))->assertOk();
     $this->get(route('password.reset', ['token' => 'test-token', 'email' => 'ana@company.com']))->assertOk();
-    $this->actingAs(User::factory()->unverified()->create())->get(route('verification.notice'))->assertOk()->assertSee('Revisa tu correo.');
+    $this->actingAs(User::factory()->unverified()->create())
+        ->withSession(['status' => 'Enlace de verificación enviado. Revisa también el correo no deseado.'])
+        ->get(route('verification.notice'))
+        ->assertOk()
+        ->assertSee('account-verify-page', false)
+        ->assertSee('account-notice', false)
+        ->assertSee('Enlace de verificación enviado.')
+        ->assertSee('Revisa tu correo.');
 });
 
 it('links the security offers to registration or the authenticated customer dashboard', function (): void {

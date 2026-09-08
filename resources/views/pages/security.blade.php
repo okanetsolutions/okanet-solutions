@@ -5,7 +5,6 @@
     <section class="security-hero">
         <div class="site-width security-hero-panel">
             <div class="security-hero-content">
-                <p class="security-hero-status"><span aria-hidden="true"></span> Evaluación autorizada · Informe accionable</p>
                 <h1>Conoce tus riesgos.<br>
                     <span>Actúa con criterio.</span>
                 </h1>
