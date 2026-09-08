@@ -13,7 +13,7 @@ use RuntimeException;
 
 class Breachsense
 {
-    private const EmailEndpoints = ['creds', 'stealer', 'combo', 'sessions', 'nhi', 'phish'];
+    private const EmailEndpoints = ['creds', 'stealer', 'combo'];
 
     public function exposureCount(string $email): int
     {

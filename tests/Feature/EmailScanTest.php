@@ -62,8 +62,8 @@ it('stores a validated exposure count and renders a masked result', function (mi
 ]);
 
 it('combines counts from the configured credential exposure endpoints', function (): void {
-    config(['services.breachsense.endpoints' => ['creds', 'stealer', 'combo', 'sessions', 'nhi', 'phish']]);
-    $counts = ['creds' => 1, 'stealer' => 2, 'combo' => 3, 'sessions' => 4, 'nhi' => 5, 'phish' => 6];
+    config(['services.breachsense.endpoints' => ['creds', 'stealer', 'combo']]);
+    $counts = ['creds' => 1, 'stealer' => 2, 'combo' => 3];
     Http::preventStrayRequests();
     Http::fake(function ($request) use ($counts) {
         $endpoint = basename(parse_url($request->url(), PHP_URL_PATH));
@@ -74,13 +74,13 @@ it('combines counts from the configured credential exposure endpoints', function
 
     (new CheckEmailExposure($scan->id))->handle(app(Breachsense::class));
 
-    expect($scan->refresh()->exposure_count)->toBe(21);
-    Http::assertSentCount(6);
+    expect($scan->refresh()->exposure_count)->toBe(6);
+    Http::assertSentCount(3);
     foreach (array_keys($counts) as $endpoint) {
         Http::assertSent(fn ($request) => $request->url() === 'https://api.breachsense.com/'.$endpoint.'?s=ana%40company.com&count=1'
             && $request->hasHeader('lic', 'test-license'));
     }
-    Sleep::assertSleptTimes(5);
+    Sleep::assertSleptTimes(2);
 });
 
 it('rejects unsupported configured endpoints before sending data', function (): void {
