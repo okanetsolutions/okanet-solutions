@@ -1,5 +1,6 @@
 @extends('layouts.account')
 @section('title', 'Verifica tu correo — Okanet Solutions')
+@section('account-class', 'account-verify-page')
 @section('account-content')
     <div class="account-narrow">
         <h1>Revisa tu correo.</h1>

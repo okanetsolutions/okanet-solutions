@@ -454,8 +454,6 @@
     .security-hero-panel::before { content: ''; position: absolute; z-index: -1; inset: 0; background-image: radial-gradient(circle, rgb(255 255 255 / .28) 1px, transparent 1.2px); background-size: 9px 9px; opacity: .45; -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, black 12%, transparent 76%); mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, black 12%, transparent 76%); }
     .security-hero-panel::after { content: ''; position: absolute; z-index: -1; inset: 0; background: radial-gradient(circle at 50% 45%, transparent 0 14%, rgb(255 255 255 / .06) 14.15% 14.3%, transparent 14.45% 25%, rgb(255 255 255 / .045) 25.15% 25.3%, transparent 25.45%); }
     .security-hero-content { align-self: center; justify-self: center; width: min(100% - 3rem, 64rem); padding-block: clamp(4.5rem, 8vw, 7rem); text-align: center; }
-    .security-hero-status { display: inline-flex; align-items: center; gap: .65rem; padding: .65rem .9rem; border: 1px solid rgb(255 255 255 / .46); border-radius: 999px; font-size: clamp(.76rem, 1.2vw, .9rem); line-height: 1.35; }
-    .security-hero-status > span { width: .5rem; height: .5rem; flex-shrink: 0; background: var(--color-mint); border-radius: 50%; box-shadow: 0 0 0 4px rgb(255 255 255 / .1); }
     .security-hero h1 { max-width: 18ch; margin: clamp(2rem, 4vw, 3.25rem) auto 0; font-size: clamp(3rem, 6.7vw, 5.6rem); line-height: .98; letter-spacing: -.04em; font-weight: 600; }
     .security-hero h1 > span { color: white; }
     .security-hero .page-lead { max-width: 55ch; margin: 1.8rem auto 2.1rem; color: rgb(255 255 255 / .86); }
@@ -679,9 +677,10 @@
 .account-check a, .account-help a { text-decoration: underline; text-underline-offset: 3px; }
 .account-form .button { justify-self: start; }
 .security-account .account-help { font-size: .875rem; color: var(--color-umber); margin-block: .5rem; }
-.account-notice { padding: 1rem 1.25rem; background: var(--color-mist); border: 1px solid var(--color-fog); border-radius: 4px; overflow-wrap: anywhere; }
-.account-error { color: oklch(.38 .14 25); border-color: currentColor; }
+.account-notice { padding: 1rem 1.25rem; color: var(--color-emerald-deep); background: color-mix(in oklch, var(--color-emerald-deep) 10%, var(--color-surface)); border: 1px solid color-mix(in oklch, var(--color-emerald-deep) 32%, var(--color-surface)); border-radius: 4px; overflow-wrap: anywhere; }
+.account-error { color: oklch(.38 .14 25); background: color-mix(in oklch, oklch(.38 .14 25) 8%, var(--color-surface)); border-color: color-mix(in oklch, oklch(.38 .14 25) 35%, var(--color-surface)); }
 .account-error ul { list-style: disc; padding-left: 1.25rem; }
+.account-verify-page > .account-notice { max-width: 42rem; margin: 0 auto clamp(2rem, 4vw, 3rem); }
 .account-result { font-size: 1.25rem; font-weight: 600; }
 .account-section { margin-top: 3rem; }
 .account-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--color-fog); overflow-wrap: anywhere; }
